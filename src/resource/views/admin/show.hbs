@@ -1,0 +1,75 @@
+<div class="app_admin">
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-xl-3">
+                <ul class="nav_admin">
+                    <li class="nav_item_admin">
+                        <a href="/admin/account" class="nav_link_admin">Account</a>
+                    </li>
+                    <li class="nav_item_admin">
+                        <a href="/admin/foods" class="nav_link_admin">Foods</a>
+                    </li>
+                    <li class="nav_item_admin">
+                        <a href="/admin/staffs" class="nav_link_admin">Staff</a>
+                    </li>
+                    <li class="nav_item_admin">
+                        <a href="/admin/slides" class="nav_link_admin">Slide</a>
+                    </li>
+                </ul>
+            </div>
+            {{!-- -------------- --}}
+            <div class="col-xl-9">
+
+                <div class="table_all">
+                    {{#if accounts}}
+                    {{> admin/adminAccount}}
+                    {{else if foods}}
+                    {{> admin/foods}}
+                    {{else if staffs}}
+                    {{> admin/staffs}}
+                    {{else if slides}}
+                    {{> admin/slide}}
+                    {{/if}}
+
+
+
+
+                    <nav aria-label="Page navigation example" class="float-bottom">
+                        <ul class="pagination justify-content-center text-align-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1"><i class="fa-solid fa-angles-left"></i></a>
+                            </li>
+                           {{#each accounts}}
+ <li class="page-item"><a class="page-link" href="#">{{sum @index 1}}</a></li>
+                           {{/each}}
+                            <li class="page-item">
+                                <a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Lấy giá trị đã nhập trong ô tìm kiếm và lưu vào localStorage khi nút tìm kiếm được nhấp
+    document.querySelector('.btn_search_admin').addEventListener('click', function (e) {
+        e.preventDefault();
+        var searchInput = document.getElementById('searchInput').value;
+        localStorage.setItem('searchKeyword', searchInput);
+        // Gửi biểu mẫu tìm kiếm
+        document.querySelector('form').submit();
+    });
+
+    // Khi tải lại trang, lấy từ khóa tìm kiếm từ localStorage và đặt lại vào ô tìm kiếm
+    window.addEventListener('DOMContentLoaded', function () {
+        var searchKeyword = localStorage.getItem('searchKeyword');
+        if (searchKeyword) {
+            document.getElementById('searchInput').value = searchKeyword;
+        }
+        // Xóa từ khóa tìm kiếm từ localStorage
+        localStorage.removeItem('searchKeyword');
+    });
+</script>

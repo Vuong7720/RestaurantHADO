@@ -1,0 +1,149 @@
+<div class="search_admin">
+    <form action="">
+        <input type="search" name="q" id="searchInput" class="ip_search_admin" placeholder="search">
+        <button type="submit" class="btn_search_admin"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</div>
+<table class="table table_admin">
+    <thead>
+        <tr>
+            <th scope="col">
+                <input type="checkbox">
+            </th>
+            <th scope="col">Name food</th>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+            <th scope="col">Rate</th>
+            <th scope="col">
+                <button class="add_all_admin" data-toggle="modal" data-target="#foodsForm">
+                    <i class="fa-solid fa-plus"></i> Add Food
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <!-- Modal -->
+    <div class="modal fade" id="foodsForm" tabindex="-1" role="dialog" aria-labelledby="foodsFormLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="foodsFormLabel">ADD FOOD</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="foods/" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name food</label>
+                            <input type="text" name="nameFood" class="form-control" placeholder="Enter your food">
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" name="titleFood" class="form-control" placeholder="Enter title food">
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="number" name="price" class="form-control" placeholder="Enter price">
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" name="imageFood">
+                        </div>
+                        <br class="form-group">
+                        <label for="exampleInput">Description</label><br>
+                        <textarea name="description" id="" cols="53" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success float-right m-2">Add food</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <tbody>
+        {{#each foods}}
+        <tr>
+            <th scope="row">
+                <input type="checkbox">
+            </th>
+            <td>{{this.nameFood}}</td>
+            <td>{{this.titleFood}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.rate}}</td>
+            <td>
+                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                    data-target="#updateFoods{{this._id}}">
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                    data-target="#deleteFoods{{this._id}}">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                </button>
+            </td>
+        </tr>
+        {{/each}}
+        {{#each foods}}
+             <div class="modal fade" id="updateFoods{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="foodsFormLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="foodsFormLabel">EDIT FOOD</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="foods/{{this._id}}?_method=PUT" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name food</label>
+                            <input type="text" value="{{this.nameFood}}" name="NewnameFood" class="form-control" placeholder="Enter your food">
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" value="{{this.titleFood}}" name="NewtitleFood" class="form-control" placeholder="Enter title food">
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="number" value="{{this.price}}" name="Newprice" class="form-control" placeholder="Enter price">
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" name="NewimageFood">
+                        </div>
+                        <br class="form-group">
+                        <label for="exampleInput">Description</label><br>
+                        <textarea name="Newdescription" value="description" id="" cols="53" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success float-right m-2">Update food</button>
+                </form>
+            </div>
+        </div>
+    </div>
+        {{/each}}
+         {{#each foods}}
+        <div class="modal fade" id="deleteFoods{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete foods ???</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="foods/{{this._id}}?_method=DELETE">
+                        <div class="btn_delete float-right">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        {{/each}}
+
+    </tbody>
+</table>

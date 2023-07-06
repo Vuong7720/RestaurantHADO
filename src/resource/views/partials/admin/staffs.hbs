@@ -1,0 +1,358 @@
+<div class="search_admin">
+    <form action="">
+        <input type="search" name="q" id="searchInput" class="ip_search_admin" placeholder="search">
+        <button type="submit" class="btn_search_admin"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</div>
+<table class="table table_admin">
+    <thead>
+        <tr>
+            <th scope="col">
+                <input type="checkbox">
+            </th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Position</th>
+            <th scope="col">Calendar</th>
+            <th scope="col">
+                <button class="add_all_admin" data-toggle="modal" data-target="#staffsForm">
+                    <i class="fa-solid fa-plus"></i> Add Staff
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <!-- Modal -->
+    <div class="modal fade" id="staffsForm" tabindex="-1" role="dialog" aria-labelledby="staffsFormLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staffsFormLabel">ADD STAFF</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="staffs/" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="nameStaff">Name staff</label>
+                            <input type="text" id="nameStaff" name="nameStaff" class="form-control"
+                                placeholder="Enter staff" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" class="form-control" placeholder="Enter Age"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" class="form-control"
+                                placeholder="Enter address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <div>
+                                <input type="radio" id="male" name="gender" value="male">
+                                <label for="male">Male</label>
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <input type="text" id="position" name="position" class="form-control"
+                                placeholder="Enter position" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="avataStaff">Avata</label>
+                            <input type="file" id="avataStaff" name="avataStaff">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" name="contactInformation[phone]" class="form-control"
+                                placeholder="Enter phone number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="contactInformation[email]" class="form-control"
+                                placeholder="Enter email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="salary">Salary</label>
+                            <input type="number" id="salary" name="salary" class="form-control"
+                                placeholder="Enter salary" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="startWorking">Start Working</label>
+                            <input type="text" id="startWorking" name="calendar[startWorking]" class="form-control"
+                                placeholder="Enter start working date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endWorking">End Working</label>
+                            <input type="text" id="endWorking" name="calendar[endWorking]" class="form-control"
+                                placeholder="Enter end working date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" cols="53" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success float-right m-2">Add staff</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <tbody>
+        {{#each staffs}}
+        <tr>
+            <th scope="row">
+                <input type="checkbox">
+            </th>
+            <td>{{this.nameStaff}}</td>
+            <td>{{this.age}}</td>
+            <td>{{this.gender}}</td>
+            <td>{{this.position}}</td>
+            <td>{{this.calendar.startWorking}} - {{this.calendar.endWorking}}</td>
+            <td>
+                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                    data-target="#updateStaff{{this._id}}">
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+                <button class="btn_ud_admin" 
+                data-id="{{this._id}}" data-toggle="modal"
+                    data-target="#deleteStaff{{this._id}}">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                </button>
+            </td>
+        </tr>
+        {{/each}}
+
+
+        {{#each staffs}}
+            <div class="modal fade" id="staffsForm" tabindex="-1" role="dialog" aria-labelledby="staffsFormLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staffsFormLabel">ADD STAFF</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="staffs/" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="nameStaff">Name staff</label>
+                            <input type="text" id="nameStaff" name="nameStaff" class="form-control"
+                                placeholder="Enter staff" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" class="form-control" placeholder="Enter Age"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" class="form-control"
+                                placeholder="Enter address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <div>
+                                <input type="radio" id="male" name="gender" value="male">
+                                <label for="male">Male</label>
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <input type="text" id="position" name="position" class="form-control"
+                                placeholder="Enter position" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="avataStaff">Avata</label>
+                            <input type="file" id="avataStaff" name="avataStaff">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" name="contactInformation[phone]" class="form-control"
+                                placeholder="Enter phone number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="contactInformation[email]" class="form-control"
+                                placeholder="Enter email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="salary">Salary</label>
+                            <input type="number" id="salary" name="salary" class="form-control"
+                                placeholder="Enter salary" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="startWorking">Start Working</label>
+                            <input type="text" id="startWorking" name="calendar[startWorking]" class="form-control"
+                                placeholder="Enter start working date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endWorking">End Working</label>
+                            <input type="text" id="endWorking" name="calendar[endWorking]" class="form-control"
+                                placeholder="Enter end working date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" cols="53" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success float-right m-2">Add staff</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+        {{/each}}
+ {{#each staffs}}
+
+ <div class="modal fade" id="updateStaff{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="staffsFormLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staffsFormLabel">ADD STAFF</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="staffs/{{this._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="nameStaff">Name staff</label>
+                            <input type="text" id="nameStaff" name="NewnameStaff" value="{{this.nameStaff}}" class="form-control"
+                                placeholder="Enter staff" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="Newage" value="{{this.age}}" class="form-control" placeholder="Enter Age"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="Newaddress" value="{{this.address}}" class="form-control"
+                                placeholder="Enter address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <div>
+                                <input type="radio" id="male" name="Newgender" value="male">
+                                <label for="male">Male</label>
+                                <input type="radio" id="female" name="Newgender" value="female">
+                                <label for="female">Female</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="position">Position</label>
+                            <input type="text" id="position" name="Newposition" value="{{this.position}}" class="form-control"
+                                placeholder="Enter position" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="avataStaff">Avata</label>
+                            <input type="file" id="avataStaff" name="NewavataStaff">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" name="NewcontactInformation[phone]" value="{{this.contactInformation.phone}}" class="form-control"
+                                placeholder="Enter phone number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="NewcontactInformation[email]" value="{{this.contactInformation.email}}" class="form-control"
+                                placeholder="Enter email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="salary">Salary</label>
+                            <input type="number" id="salary" name="Newsalary" value="{{this.salary}}" class="form-control"
+                                placeholder="Enter salary" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="startWorking">Start Working</label>
+                            <input type="text" id="startWorking" name="Newcalendar[startWorking]" value="{{this.calendar.startWorking}}" class="form-control"
+                                placeholder="Enter start working date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="endWorking">End Working</label>
+                            <input type="text" id="endWorking" name="Newcalendar[endWorking]" value="{{this.calendar.endWorking}}" class="form-control"
+                                placeholder="Enter end working date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="Newdescription" cols="53" rows="3" value="{{this.description}}"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-success float-right m-2">Update staff</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ {{/each}}
+   {{#each staffs}}
+        <div class="modal fade" id="deleteStaff{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Staff ???</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="staffs/{{this._id}}?_method=DELETE">
+                        <div class="btn_delete float-right">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        {{/each}}
+
+    </tbody>
+</table>

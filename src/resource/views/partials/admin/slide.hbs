@@ -1,0 +1,131 @@
+<div class="search_admin">
+    <form action="">
+        <input type="search" name="q" id="searchInput" class="ip_search_admin" placeholder="search">
+        <button type="submit" class="btn_search_admin"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+</div>
+<table class="table table_admin">
+    <thead>
+        <tr>
+            <th scope="col">
+                <input type="checkbox">
+            </th>
+            <th scope="col">Name</th>
+            <th scope="col">Title</th>
+            <th scope="col">
+                <button class="add_all_admin" data-toggle="modal" data-target="#SlidesForm">
+                    <i class="fa-solid fa-plus"></i> Add Slide
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <!-- Modal -->
+    <div class="modal fade" id="SlidesForm" tabindex="-1" role="dialog" aria-labelledby="SlidesFormLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="SlidesFormLabel">ADD Slide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="slides/" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name Slide</label>
+                            <input type="text" name="nameSlide" class="form-control" placeholder="Enter your Slide">
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" name="titleSlide" class="form-control" placeholder="Enter title Slide">
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" name="imageSlide">
+                        </div>
+                </div>
+                <button type="submit" class="btn btn-success float-right m-2">Add Slide</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <tbody>
+        {{#each slides}}
+        <tr>
+            <th scope="row">
+                <input type="checkbox">
+            </th>
+            <td>{{this.nameSlide}}</td>
+            <td>{{this.titleSlide}}</td>
+            <td>
+                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                    data-target="#updateSlides{{this._id}}">
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                    data-target="#deleteSlides{{this._id}}">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                </button>
+            </td>
+        </tr>
+        {{/each}}
+        {{#each slides}}
+             <div class="modal fade" id="updateSlides{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="SlidesFormLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="SlidesFormLabel">EDIT Slide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="slides/{{this._id}}?_method=PUT" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name Slide</label>
+                            <input type="text" value="{{this.nameSlide}}" name="NewnameSlide" class="form-control" placeholder="Enter your Slide">
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" value="{{this.titleSlide}}" name="NewtitleSlide" class="form-control" placeholder="Enter title Slide">
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" name="NewimageSlide">
+                        </div>
+                </div>
+                <button type="submit" class="btn btn-success float-right m-2">Update Slide</button>
+                </form>
+            </div>
+        </div>
+    </div>
+        {{/each}}
+         {{#each slides}}
+        <div class="modal fade" id="deleteSlides{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Slides ???</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="Slides/{{this._id}}?_method=DELETE">
+                        <div class="btn_delete float-right">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        {{/each}}
+
+    </tbody>
+</table>
