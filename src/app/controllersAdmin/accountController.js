@@ -18,6 +18,7 @@ class AccountController {
                 .limit(pageSize)
                 .then(accounts => {
                     res.render('admin/show',{
+                        showAccount:true,
                         accounts: mutipleMongooseToObject(accounts),
                     })
                 })
@@ -34,6 +35,7 @@ class AccountController {
               })
               .then(accounts => {
                   res.render('admin/show',{
+                    showAccount:true,
                       accounts: mutipleMongooseToObject(accounts),
                   })
               })
@@ -46,6 +48,7 @@ class AccountController {
             .limit(pageSize)
                 .then(accounts => {
                     res.render('admin/show',{
+                        showAccount:true,
                         accounts: mutipleMongooseToObject(accounts),
                     })
                 })
@@ -54,6 +57,7 @@ class AccountController {
                 });
         }
     }
+    
     showAccountId(req, res, next) {
         var id = req.params.id;
         AccountModel.findById({ _id: id })
@@ -116,17 +120,21 @@ class AccountController {
     loginAccount(req, res, next) {
         var { username, password } = req.body
         AccountModel.findOne({ username: username, password: password })
-            .then(data => res.json('welcome'))
+        .then(accounts => {
+            res.render('clients/headerClient',{
+                accounts: mutipleMongooseToObject(accounts),
+            })
+        })
             .catch(err => res.status(500).json('login failed'))
     }
 
-    deleteAccount(req, res, next) {
+    softDeleteAccount(req, res, next) {
         var id = req.params.id
-        AccountModel.deleteOne({
+        AccountModel.delete({
             _id: id,
         })
             .then(() => {
-                res.redirect('/admin/account')
+                res.redirect('back')
             })
             .catch(err => {
                 res.status(500).json('xoa that bai')

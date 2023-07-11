@@ -23,6 +23,7 @@ const engine = exphbs.create({
   extname: '.hbs',
   helpers: {
    sum:(a,b)=>a+b,
+   eq:(v1, v2) => v1 === v2
   }
 });
 app.engine('.hbs', engine.engine);

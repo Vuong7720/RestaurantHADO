@@ -19,6 +19,7 @@ class StaffController {
                 .limit(pageSize)
                 .then(staffs => {
                     res.render('admin/show',{
+                        showStaff:true,
                         staffs: mutipleMongooseToObject(staffs),
                     })
                 })
@@ -36,6 +37,7 @@ class StaffController {
               })
               .then(staffs => {
                   res.render('admin/show',{
+                    showStaff:true,
                       staffs: mutipleMongooseToObject(staffs),
                   })
               })
@@ -47,6 +49,7 @@ class StaffController {
         StaffModel.find({})
             .then(staffs => {
                 res.render('admin/show', {
+                    showStaff:true,
                     staffs: mutipleMongooseToObject(staffs),
                 })
             })

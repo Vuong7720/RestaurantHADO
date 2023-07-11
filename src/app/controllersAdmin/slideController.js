@@ -19,6 +19,7 @@ class SlideController {
                 .limit(pageSize)
                 .then(slides => {
                     res.render('admin/show',{
+                        showSlide:true,
                         slides: mutipleMongooseToObject(slides),
                     })
                 })
@@ -35,6 +36,7 @@ class SlideController {
               })
               .then(slides => {
                   res.render('admin/show',{
+                    showSlide:true,
                       slides: mutipleMongooseToObject(slides),
                   })
               })
@@ -46,6 +48,7 @@ class SlideController {
         SlideModel.find({})
             .then(slides => {
                 res.render('admin/show',{
+                    showSlide:true,
                     slides: mutipleMongooseToObject(slides),
                 })
             })

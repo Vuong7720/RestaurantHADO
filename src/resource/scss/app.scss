@@ -435,8 +435,17 @@ a:hover{
 //     background-color: #ed9e79 !important;
 //     border: 1px solid #666;
 // }
-
-
+.trash_admin{
+    color:#666;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.trash_admin:hover{
+    color:#ed9e79;
+}
+.selected{
+    color: red;
+  }
 .search_admin{
     width: 100%;
     text-align: center;
@@ -506,4 +515,12 @@ a:hover{
 }
 .btn_ud_admin:hover{
     color: #ee7f4c;
+}
+.content_admin{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 20ch;
+        color:#eeeaea;
+        font-size: 1.2rem;
 }

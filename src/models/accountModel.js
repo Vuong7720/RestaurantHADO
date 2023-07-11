@@ -1,5 +1,8 @@
 const mongoose = require('./db')
 const Schema = mongoose.Schema
+const SoftDeleteModel = require('mongoose-delete');
+
+
 
 const AccountSchema = new Schema({
     username:{type: String, default:'user', maxLenghts: 255},
@@ -11,7 +14,14 @@ const AccountSchema = new Schema({
 },{
     collection: 'accounts',
 })
+// add plugin
+AccountSchema.plugin(SoftDeleteModel, { 
+    deletedAt: true,
+    overrideMethods: 'all',
+ });
 
-const AccountModel = mongoose.model('Account', AccountSchema)
+
+
+const AccountModel = mongoose.model('account', AccountSchema)
 
 module.exports = AccountModel

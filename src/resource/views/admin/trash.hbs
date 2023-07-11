@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="trash">
+   <a href="/admin/account" class="trash_admin"><i class="fa-solid fa-rotate-left"></i> Quay lại admin</a>
+</div>
+</div>
+<div class="app_admin">
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-xl-3 col-lg-2 col-sm-2">
+                <ul class="nav_admin">
+                    <li class="nav_item_admin">
+                        <a href="/trash/account" class="nav_link_admin">Account</a>
+                    </li>
+                    <li class="nav_item_admin">
+                        <a href="/trash/foods" class="nav_link_admin">Foods</a>
+                    </li>
+                    <li class="nav_item_admin">
+                        <a href="/trash/staffs" class="nav_link_admin">Staff</a>
+                    </li>
+                    <li class="nav_item_admin">
+                        <a href="/trash/slides" class="nav_link_admin">Slide</a>
+                    </li>
+                    <li class="nav_item_admin">
+                        <a href="/trash/news" class="nav_link_admin">News</a>
+                    </li>
+                </ul>
+            </div>
+            {{!-- -------------- --}}
+            <div class="col-xl-9 col-lg-10 col-sm-10">
+
+                <div class="table_all">
+                    {{#if showAccountTrash}}
+                    {{> trashAdmin/account}}
+                    {{else if}}
+
+
+                    {{/if}}
+
+                </div>
+            </div>
+
+        {{!-- ĐANG LÀM DỞ PHẦN THAY ĐỔI URL TRONG HANDLEBAR --}}
+        </div>
+    </div>
+</div>

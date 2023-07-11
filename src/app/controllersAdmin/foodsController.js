@@ -19,6 +19,7 @@ class FoodsController {
                 .limit(pageSize)
                 .then(foods => {
                     res.render('admin/show',{
+                        showFood:true,
                         foods: mutipleMongooseToObject(foods),
                     })
                 })
@@ -35,6 +36,7 @@ class FoodsController {
               })
               .then(foods => {
                   res.render('admin/show',{
+                    showFood:true,
                       foods: mutipleMongooseToObject(foods),
                   })
               })
@@ -45,6 +47,7 @@ class FoodsController {
         FoodsModel.find({})
             .then(foods => {
                 res.render('admin/show',{
+                    showFood:true,
                     foods: mutipleMongooseToObject(foods),
                 })
             })
