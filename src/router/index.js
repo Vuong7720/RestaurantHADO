@@ -4,7 +4,13 @@ var foodsRouter = require('./routerAdmin/foodsRouter');
 var staffsRouter = require('./routerAdmin/staffRouter');
 var slideRouter = require('./routerAdmin/slideRouter');
 var newsRouter = require('./routerAdmin/newsRouter');
+
+// ------router trashs
 var trashAccountRouter = require('./routerTrash/accountRouter');
+var trashFoodsRouter = require('./routerTrash/foodsRouter');
+var trashStaffsRouter = require('./routerTrash/staffsRouter');
+var trashNewsRouter = require('./routerTrash/newsRouter');
+var trashSlidesRouter = require('./routerTrash/slideRouter');
 
 
 
@@ -23,6 +29,10 @@ function router(app){
     // -----------------------
 
     app.use('/trash/account', trashAccountRouter)
+    app.use('/trash/foods', trashFoodsRouter)
+    app.use('/trash/staffs', trashStaffsRouter)
+    app.use('/trash/news', trashNewsRouter)
+    app.use('/trash/slides', trashSlidesRouter)
 
 
     // ------------------

@@ -70,7 +70,7 @@ class StaffController {
             calendar, startWorking, endWorking, createdAt, updatedAt
         })
             .then(data => {
-                res.redirect('/admin/staffs')
+                res.redirect('back')
             })
             .catch(err => {
                 res.status(500).json('err add staff')
@@ -95,18 +95,18 @@ class StaffController {
 
         })
             .then(() => {
-                res.redirect('/admin/staffs')
+                res.redirect('back')
             })
             .catch(err => {
                 res.status(500).json('error updating')
             })
     }
 
-    deleteStaff(req, res, next) {
+    softDeleteStaff(req, res, next) {
         var id = req.params.id
-        StaffModel.deleteOne({ _id: id })
+        StaffModel.delete({ _id: id })
             .then(() => {
-                res.redirect('/admin/staffs')
+                res.redirect('back')
             })
             .catch(err => {
                 res.status(500).json('error deleting')

@@ -1,3 +1,19 @@
+#pagi ul {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin: auto; }
+
+#pagi ul li {
+  color: aliceblue;
+  cursor: pointer; }
+
+#pagi ul li a {
+  padding: 5px 10px; }
+
+#pagi ul li a:hover {
+  color: #ffbf00; }
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

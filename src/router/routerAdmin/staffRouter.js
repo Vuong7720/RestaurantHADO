@@ -6,7 +6,7 @@ const upload = require('../../middleware/uploadImgFoods')
 router.get('/', StaffController.showStaff)
 router.post('/', upload.single('avataStaff'),StaffController.addStaff)
 router.put('/:id', upload.single('NewavataStaff'),StaffController.updateStaff)
-router.delete('/:id',StaffController.deleteStaff)
+router.delete('/:id',StaffController.softDeleteStaff)
 
 
 

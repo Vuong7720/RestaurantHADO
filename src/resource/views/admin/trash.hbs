@@ -27,19 +27,24 @@
             </div>
             {{!-- -------------- --}}
             <div class="col-xl-9 col-lg-10 col-sm-10">
-
                 <div class="table_all">
                     {{#if showAccountTrash}}
-                    {{> trashAdmin/account}}
-                    {{else if}}
-
-
+                        {{> trashAdmin/account}}
+                    {{else if showFoodsTrash}}
+                        {{> trashAdmin/foods}}
+                    {{else if showStaffTrash}}
+                        {{> trashAdmin/staffs}}
+                    {{else if showSlideTrash}}
+                        {{> trashAdmin/slide}}
+                    {{else if showNewsTrash}}
+                        {{> trashAdmin/news}}
                     {{/if}}
-
                 </div>
             </div>
-
-        {{!-- ĐANG LÀM DỞ PHẦN THAY ĐỔI URL TRONG HANDLEBAR --}}
         </div>
     </div>
 </div>
+
+
+
+<script src="../js/searchInSto.js"></script>

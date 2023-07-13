@@ -17,9 +17,14 @@ class AccountController {
                 .skip(skip)
                 .limit(pageSize)
                 .then(accounts => {
-                    res.render('admin/show',{
-                        showAccount:true,
-                        accounts: mutipleMongooseToObject(accounts),
+                    AccountModel.countDocuments({}).then((total)=>{
+                        var sumPage = Math.ceil(total/pageSize)
+                    
+                        res.render('admin/show',{
+                            sumPage:sumPage,
+                            showAccount:true,
+                            accounts: mutipleMongooseToObject(accounts),
+                        })
                     })
                 })
                 .catch(err => {
@@ -85,7 +90,7 @@ class AccountController {
                         updatedAt: updatedAt
                     })
                     .then(data => {
-                        res.redirect('/admin/account')
+                        res.redirect('back')
                     })
                     .catch(err => {
                         res.status(500).json('create failed')
@@ -108,7 +113,7 @@ class AccountController {
             role: Newrole,
         })
         .then(() =>{
-            res.redirect('/admin/account')
+            res.redirect('back')
         })
         .catch(err =>{
             console.log(err)

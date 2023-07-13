@@ -14,7 +14,7 @@ class TrashAccountController {
             }
             var skip = (page - 1) * pageSize
 
-            AccountModel.findDeleted({})
+            AccountModel.findWithDeleted({deleted:true})
                 .skip(skip)
                 .limit(pageSize)
                 .then(accounts => {
@@ -28,7 +28,7 @@ class TrashAccountController {
                 })
         }
         else if(q){
-            AccountModel.findDeleted({
+            AccountModel.findWithDeleted({deleted:true,
                 $or: [
                   { username: { $regex: q, $options: 'i' } },
                   { email: { $regex: q, $options: 'i' } },
@@ -45,7 +45,7 @@ class TrashAccountController {
               });
         } 
         else{
-            AccountModel.findDeleted({})
+            AccountModel.findWithDeleted({deleted:true})
             .limit(pageSize)
                 .then(accounts => {
                     res.render('admin/trash',{

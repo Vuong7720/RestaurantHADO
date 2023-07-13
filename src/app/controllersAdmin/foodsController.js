@@ -113,14 +113,15 @@ class FoodsController {
             res.status(500).json('err updateFood in server')
         })
     }
-    deleteFoods(req, res, next) {
+    softDeleteFoods(req, res, next) {
         var id = req.params.id
-        FoodsModel.deleteOne({_id:id})
+        FoodsModel.delete({_id:id})
         .then(() =>{
-            res.redirect('/admin/foods')
+            res.redirect('back')
         })
         .catch(err =>{res.status(500).json('err updateFood in server')})
     }
+    
 }
 
 module.exports = new FoodsController

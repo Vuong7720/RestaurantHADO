@@ -1,6 +1,6 @@
 const mongoose = require('./db')
 const Schema = mongoose.Schema
-
+const SoftDeleteModel = require('mongoose-delete');
 const NewsSchema = new Schema({
     titleNews: {type:String},
     nameNews: {type:String},
@@ -13,7 +13,11 @@ const NewsSchema = new Schema({
 },{
     collection: 'news',
 })
-
+// add plugin
+NewsSchema.plugin(SoftDeleteModel, { 
+    deletedAt: true,
+    overrideMethods: 'all',
+ });
 const NewsModel = mongoose.model('news', NewsSchema)
 
 module.exports = NewsModel

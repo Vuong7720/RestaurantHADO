@@ -23,7 +23,23 @@ const engine = exphbs.create({
   extname: '.hbs',
   helpers: {
    sum:(a,b)=>a+b,
-   eq:(v1, v2) => v1 === v2
+   eq:(v1, v2) => v1 === v2,
+   pagi:(b1, b2)=> Math.ceil(b1/b2),
+   batch: function(context, blockSize, options) {
+    var ret = '';
+    var counter = 0;
+    var len = Math.ceil(context.length / blockSize);
+
+    while (counter < len) {
+      var start = counter * blockSize;
+      var end = start + blockSize;
+      var slice = context.slice(start, end);
+      ret += options.fn(slice);
+      counter++;
+    }
+
+    return ret;
+  }
   }
 });
 app.engine('.hbs', engine.engine);

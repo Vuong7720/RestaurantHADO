@@ -6,7 +6,7 @@ const upload = require('../../middleware/uploadSlide')
 router.get('/', SlideController.showSlide)
 router.post('/', upload.single('imageSlide'), SlideController.addslides)
 router.put('/:id', upload.single('NewimageSlide'),SlideController.updateslides)
-router.delete('/:id', SlideController.deleteSlides)
+router.delete('/:id', SlideController.softDeleteSlides)
 router.get('/:id', SlideController.showslidesId)
 
 

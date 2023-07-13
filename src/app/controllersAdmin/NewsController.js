@@ -123,9 +123,9 @@ class NewsController {
                 res.status(500).json('err updateFood in server')
             })
     }
-    deletenews(req, res, next) {
+    softDeletenews(req, res, next) {
         var id = req.params.id
-        NewsModel.deleteOne({ _id: id })
+        NewsModel.delete({ _id: id })
             .then(() => {
                 res.redirect('/admin/news')
             })

@@ -20,8 +20,6 @@ AccountSchema.plugin(SoftDeleteModel, {
     overrideMethods: 'all',
  });
 
-
-
 const AccountModel = mongoose.model('account', AccountSchema)
 
 module.exports = AccountModel

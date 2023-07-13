@@ -85,7 +85,7 @@ class SlideController {
                     nameSlide, titleSlide,imageSlide, createdAt, updatedAt
                 })
                 .then(() => {
-                        res.redirect('/admin/slides')
+                        res.redirect('back')
                     })
             }
         }).catch(err => {
@@ -107,17 +107,17 @@ class SlideController {
 
         })
         .then(() =>{
-            res.redirect('/admin/slides')
+            res.redirect('back')
         })
         .catch(err =>{
             res.status(500).json('err updateFood in server')
         })
     }
-    deleteSlides(req, res, next) {
+    softDeleteSlides(req, res, next) {
         var id = req.params.id
-        SlideModel.deleteOne({_id:id})
+        SlideModel.delete({_id:id})
         .then(() =>{
-            res.redirect('/admin/slides')
+            res.redirect('back')
         })
         .catch(err =>{res.status(500).json('err updateFood in server')})
     }
