@@ -112,7 +112,24 @@ class StaffController {
                 res.status(500).json('error deleting')
             })
     }
+    handleFormAction(req, res, next){
+        switch(req.body.action){
+            case 'delete':
+                StaffModel.delete({ _id:{ $in: req.body.collectionIds }})
+                    .then(() => {
+                        res.redirect('back')
+                    })
+                    .catch(err => {
+                        res.status(500).json('error deleting')
+                    })
+                break;
+
+            default:
+                res.json({message: 'action is invalid'})
+        }
+    }
 }
+
 
 
 module.exports = new StaffController

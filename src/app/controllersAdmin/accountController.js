@@ -145,7 +145,22 @@ class AccountController {
                 res.status(500).json('xoa that bai')
             })
     }
-   
+    handleFormAction(req, res, next){
+        switch(req.body.action){
+            case 'delete':
+                AccountModel.delete({ _id:{ $in: req.body.collectionIds }})
+                    .then(() => {
+                        res.redirect('back')
+                    })
+                    .catch(err => {
+                        res.status(500).json('error deleting')
+                    })
+                break;
+
+            default:
+                res.json({message: 'action is invalid'})
+        }
+    }
 }
 
 module.exports = new AccountController;

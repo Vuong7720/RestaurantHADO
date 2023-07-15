@@ -5,6 +5,7 @@ const AccountController = require('../../app/controllersAdmin/accountController'
 router.get('/', AccountController.showAccount);
 router.post('/register', AccountController.addAccount);
 router.post('/login', AccountController.loginAccount);
+router.post('/account-handle-form-action',AccountController.handleFormAction)
 router.put('/update/:id', AccountController.updateAccount);
 router.delete('/:id', AccountController.softDeleteAccount);
 router.get('/:id', AccountController.showAccountId);

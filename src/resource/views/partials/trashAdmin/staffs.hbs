@@ -4,11 +4,15 @@
         <button type="submit" class="btn_search_admin"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 </div>
+<div class="select_all_delete ml-4 mt-2 mb-2">
+    <input type="checkbox"> Chọn tất cả
+</div>
 <table class="table table_admin">
+
     <thead>
         <tr>
             <th scope="col">
-                <input type="checkbox">
+                
             </th>
             <th scope="col">Name</th>
             <th scope="col">Age</th>
@@ -16,7 +20,6 @@
             <th scope="col">Position</th>
             <th scope="col">Calendar</th>
             <th scope="col">
-                
             </th>
         </tr>
     </thead>
@@ -24,7 +27,7 @@
         {{#each staffs}}
         <tr>
             <th scope="row">
-                <input type="checkbox">
+                <input type="checkbox"> 
             </th>
             <td class="content_admin">{{this.nameStaff}}</td>
             <td class="content_admin">{{this.age}}</td>
@@ -34,7 +37,7 @@
             <td class="content_admin">
                 <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
                     data-target="#restoreStaff{{this._id}}">
-                    <i class="fa-solid fa-pencil"></i>
+                    <i class="fa-solid fa-window-restore"></i>
                 </button>
                 <button class="btn_ud_admin" 
                 data-id="{{this._id}}" data-toggle="modal"

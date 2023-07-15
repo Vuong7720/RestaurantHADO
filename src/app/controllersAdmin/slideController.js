@@ -121,6 +121,22 @@ class SlideController {
         })
         .catch(err =>{res.status(500).json('err updateFood in server')})
     }
+    handleFormAction(req, res, next){
+        switch(req.body.action){
+            case 'delete':
+                SlideModel.delete({ _id:{ $in: req.body.collectionIds }})
+                    .then(() => {
+                        res.redirect('back')
+                    })
+                    .catch(err => {
+                        res.status(500).json('error deleting')
+                    })
+                break;
+
+            default:
+                res.json({message: 'action is invalid'})
+        }
+    }
 }
 
 module.exports = new SlideController

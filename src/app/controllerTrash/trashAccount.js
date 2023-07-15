@@ -43,7 +43,7 @@ class TrashAccountController {
               .catch(err => {
                   res.status(500).json('Lỗi server account')
               });
-        } 
+        }
         else{
             AccountModel.findWithDeleted({deleted:true})
             .limit(pageSize)

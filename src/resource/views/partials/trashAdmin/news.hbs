@@ -8,7 +8,7 @@
     <thead>
         <tr>
             <th scope="col">
-                <input type="checkbox">
+                <input type="checkbox"> Chọn tất cả
             </th>
             <th scope="col">Name</th>
             <th scope="col">Title</th>
@@ -24,7 +24,7 @@
         {{#each news}}
         <tr>
             <th scope="row">
-                <input type="checkbox">
+                <input type="checkbox"> 
             </th>
             <td class="content_admin">{{this.nameNews}}</td>
             <td class="content_admin">{{this.titleNews}}</td>
@@ -33,7 +33,7 @@
             <td class="content_admin">
                 <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
                     data-target="#restoreNews{{this._id}}">
-                    <i class="fa-solid fa-pencil"></i>
+                    <i class="fa-solid fa-window-restore"></i>
                 </button>
                 <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
                     data-target="#deletenews{{this._id}}">

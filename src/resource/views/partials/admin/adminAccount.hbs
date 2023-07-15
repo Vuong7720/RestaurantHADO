@@ -4,12 +4,24 @@
         <button type="submit" class="btn_search_admin"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 </div>
+ <button class="add_all_admin float-right m-2 mr-4" data-toggle="modal" data-target="#accountForm">
+                    <i class="fa-solid fa-plus"></i> Add Account
+                </button>
 
+<form action="account/account-handle-form-action" method="POST">
+
+<div class="select_all_delete ml-4 mt-2 mb-2 align-items-center">
+    <input type="checkbox" id="checkbox-all"> Chọn tất cả
+    <select name="action">
+        <option  value="">-- Chức năng</option>
+        <option value="delete">Xóa</option>
+    </select>
+    <button class="btn btn-success btn-submitAllChecked disabled">Thực hiện</button>
+</div>
 <table class="table table_admin">
     <thead>
         <tr>
             <th scope="col">
-                <input type="checkbox">
             </th>
             <th scope="col">STT</th>
             <th scope="col">User name</th>
@@ -17,13 +29,45 @@
             <th scope="col">Email</th>
             <th scope="col">Role</th>
             <th scope="col">
-                <button class="add_all_admin" data-toggle="modal" data-target="#accountForm">
-                    <i class="fa-solid fa-plus"></i> Add Account
-                </button>
+               
             </th>
         </tr>
     </thead>
-    <!-- Modal -->
+    
+    <tbody>
+        {{#each accounts}}
+        <tr>
+            <th scope="row">
+                  <input type="checkbox" name="collectionIds" value="{{this._id}}">
+            </th>
+            <td class="content_admin">{{sum @index 1}}</td>
+            <td class="content_admin">{{this.username}}</td>
+            <td class="content_admin">{{this.password}}</td>
+            <td class="content_admin">{{this.email}}</td>
+            <td class="content_admin">{{this.role}}</td>
+            <td class="content_admin">
+                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                    data-target="#updateAccount{{this._id}}">
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+                <button class="btn_ud_admin" 
+                data-id="{{this._id}}" data-toggle="modal"
+                    data-target="#deleteAccount{{this._id}}">
+                    <i class="fa-solid fa-trash-can-arrow-up"></i>
+                </button>
+            </td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="7" class="content_admin">
+                Chưa có tài khoản nào ...
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</form>
+<!-- Modal -->
     <div class="modal fade" id="accountForm" tabindex="-1" role="dialog" aria-labelledby="accountFormLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -54,37 +98,8 @@
             </div>
         </div>
     </div>
-    <tbody>
-        {{#each accounts}}
-        <tr>
-            <th scope="row">
-                <input type="checkbox">
-            </th>
-            <td class="content_admin">{{sum @index 1}}</td>
-            <td class="content_admin">{{this.username}}</td>
-            <td class="content_admin">{{this.password}}</td>
-            <td class="content_admin">{{this.email}}</td>
-            <td class="content_admin">{{this.role}}</td>
-            <td class="content_admin">
-                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
-                    data-target="#updateAccount{{this._id}}">
-                    <i class="fa-solid fa-pencil"></i>
-                </button>
-                <button class="btn_ud_admin" 
-                data-id="{{this._id}}" data-toggle="modal"
-                    data-target="#deleteAccount{{this._id}}">
-                    <i class="fa-solid fa-trash-can-arrow-up"></i>
-                </button>
-            </td>
-        </tr>
-        {{else}}
-        <tr>
-            <td colspan="7" class="content_admin">
-                Chưa có tài khoản nào ...
-            </td>
-        </tr>
-        {{/each}}
-        {{#each accounts}}
+
+{{#each accounts}}
         <div class="modal fade" id="updateAccount{{this._id}}" tabindex="-1" role="dialog"
             aria-labelledby="accountFormLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -148,10 +163,6 @@
             </div>
         </div>  
         {{/each}}
-
-    </tbody>
-</table>
-
 {{!-- <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">

@@ -5,6 +5,7 @@ const upload = require('../../middleware/uploadImgFoods')
 
 router.get('/', FoodsController.showFoods)
 router.post('/', upload.single('imageFood'), FoodsController.addFoods)
+router.post('/foods-handle-form-action',FoodsController.handleFormAction)
 router.put('/:id', upload.single('NewimageFood'),FoodsController.updateFoods)
 router.delete('/:id', FoodsController.softDeleteFoods)
 router.get('/:id', FoodsController.showFoodsId)
