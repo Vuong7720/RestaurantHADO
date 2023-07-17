@@ -1,5 +1,6 @@
 const AccountModel = require('../../models/accountModel');
 const {mutipleMongooseToObject} = require('../../util/mongoose')
+const jwt = require('jsonwebtoken')
 
 class AccountController {
     showAccount(req, res, next) {
@@ -121,16 +122,30 @@ class AccountController {
         })
 
     }
-
+    showLogin(req, res, next) {
+        res.render('clients/show')
+    }
     loginAccount(req, res, next) {
         var { username, password } = req.body
-        AccountModel.findOne({ username: username, password: password })
-        .then(accounts => {
-            res.render('clients/headerClient',{
-                accounts: mutipleMongooseToObject(accounts),
-            })
+        AccountModel.findOne({ 
+            username: username, 
+            password: password 
         })
-            .catch(err => res.status(500).json('login failed'))
+        .then(accounts => {
+            if(accounts){
+               var token = jwt.sign({
+                _id:accounts._id,
+               }, 'mk')
+                res.json({
+                    message:'thanh cong',
+                    token: token
+                })
+            }else{
+                res.json('tai khoan hoac mk sai')
+            }
+        })
+            .catch(err =>{console.log(err)})
+
     }
 
     softDeleteAccount(req, res, next) {

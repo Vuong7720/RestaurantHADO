@@ -1,0 +1,121 @@
+<div class="content">
+    <div class="content_app">
+        <div class="container mt-4">
+            <div class="content_login m-auto" id="log">
+                <div class="login_left">
+                    <div class="title">
+                        Login
+                    </div>
+                    <div class="tip">
+                        welcome to my website !!!
+                    </div>
+                </div>
+                <div class="login_right">
+                    <div action="/admin/account/login" method="POST">
+                        <div class="ip">
+                            <label for="">User Name</label>
+                            <input type="text" name="username" id="username" class="ip_log" placeholder="UserName">
+                        </div>
+                        <div class="ip">
+                            <label for="">password</label>
+                            <input type="password" name="password" id="password" class="ip_log" placeholder="password">
+                        </div>
+                        <button onclick="login()" class="submit">Login</button>
+                    </div>
+                    <div class="question_user">
+                        <span>Bạn chưa có tài khoản ?</span>
+                        <span class="what_sigin change_btn" onclick="changelog()">SignUp ?</span>
+                        <a href="" class="what_sigin"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="" class="what_sigin"><i class="fa-brands fa-google"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="content_register m-auto" id="regis">
+                <div class="login_left">
+                    <div class="title">
+                        Register
+                    </div>
+                    <div class="tip">
+                        welcome to my website !!!
+                    </div>
+                </div>
+
+                <form action="/admin/accounts/register" class="login_right" method="POST">
+                    <div class="ip">
+                        <label for="">Email</label>
+                        <input type="text" class="ip_log" placeholder="Email">
+                    </div>
+                    <div class="ip">
+                        <label for="">User Name</label>
+                        <input type="text" class="ip_log" placeholder="UserName">
+                    </div>
+
+                    <div class="ip">
+                        <label for="">Password</label>
+                        <input type="password" class="ip_log" placeholder="Password">
+                    </div>
+                    <button class="submit">Register</button>
+                    <div class="question_user">
+                        <span>Bạn đã có tài khoản ?</span>
+                        <span class="what_sigin change_btn" onclick="changelog()">SignIn ?</span>
+                        <a href="" class="what_sigin"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="" class="what_sigin"><i class="fa-brands fa-google"></i></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var changelog = () => {
+        var log = document.getElementById('log');
+        var regis = document.getElementById('regis');
+        if (log.style.display = 'flex' && regis.style.display == 'none') {
+            log.style.display = 'none';
+            regis.style.display = 'flex';
+        }
+        else {
+            log.style.display = 'flex';
+            regis.style.display = 'none';
+        }
+    }
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+var login = () =>{
+    $.ajax({
+        url:'admin/account/login',
+        type: 'POST',
+        data:{
+            username: $('#username').val(),
+            password: $('#password').val()
+        }
+    }).then(data =>{
+        setCookie('token', data.token, 1)
+    })
+    .catch(err =>{
+        console.log(err);
+    })
+}
+
+</script>

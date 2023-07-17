@@ -17,6 +17,8 @@ var trashSlidesRouter = require('./routerTrash/slideRouter');
 // ----------------------------
 // var foodClient = require('./routerClient/foodsClient')
 var slideClient = require('./routerClient/slidesClient')
+var foodClient = require('./routerClient/foodsClient')
+var login = require('./routerClient/login')
 
 
 function router(app){
@@ -36,7 +38,8 @@ function router(app){
 
 
     // ------------------
-    // app.use('/', foodClient)
+    app.use('/', login)
+    app.use('/', foodClient)
     app.use('/', slideClient)
 }
 
