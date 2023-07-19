@@ -1,8 +1,35 @@
+{{#if showLogin}}
 {{> clients/login}}
-{{!-- {{> clients/slideClient}}
 
-{{> clients/mainClient}} --}}
+{{else}}
+
+{{> clients/slideClient}}
+
+{{> clients/mainClient}}
+{{/if}}
 
 
+<div style="display: none;">
+  <form id="myForm" action="/" method="post">
+    <!-- Các trường form ẩn -->
+    <input type="hidden" name="hiddenField" value="Hidden Value">
+  </form>
+</div>
 
-{{!-- thưc hiện đăng nhập (mục tiêu ngày 17/7) --}}
+<script>
+   window.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('myForm');
+  const isFormSubmitted = localStorage.getItem('isFormSubmitted');
+  
+  if (!isFormSubmitted && window.location.pathname === '/') {
+    form.addEventListener('submit', () => {
+      localStorage.setItem('isFormSubmitted', 'true');
+    });
+  } else {
+    // Form đã được gửi trước đó hoặc URL không phải trang chính, vô hiệu hóa nút submit
+    const submitButton = form.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+  }
+});
+
+</script>

@@ -123,7 +123,9 @@ class AccountController {
 
     }
     showLogin(req, res, next) {
-        res.render('clients/show')
+        res.render('clients/show',{
+            showLogin:true
+        })
     }
     loginAccount(req, res, next) {
         var { username, password } = req.body

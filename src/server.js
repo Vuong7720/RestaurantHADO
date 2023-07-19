@@ -58,7 +58,7 @@ router(app)
 
 
 app.get('/', function (req, res) {
-  res.render('home')
+  res.render('clients/show')
 })
 
 app.listen(port, () => {

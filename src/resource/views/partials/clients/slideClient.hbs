@@ -1,45 +1,49 @@
-  <div class="slide_1st">
-        <div class="container">
-            <div id="demo" class="carousel slide" data-ride="carousel">
-                
-                <ul class="carousel-indicators">
-                  <li data-target="#demo" data-slide-to="0" class="active"></li>
-                  <li data-target="#demo" data-slide-to="1"></li>
-                  <li data-target="#demo" data-slide-to="2"></li>
-                </ul>
-                <div class="carousel-inner carousel_customer">
-                  {{#each slides}}
-                  <div class="carousel-item active">
-                    <img class="slider_01" src="{{this.imageSlide}}" alt="slide_food">
-                    <div class="carousel-caption">
-                        <h3 class="tx_02">{{this.nameSlide}}</h3>
-                        <p>We had such a great time in LA!</p>
-                    </div>
-                  </div>
-                  {{/each}}
-                  <div class="carousel-item">
-                    <img class="slider_01" src="https://i.vietgiaitri.com/2020/10/9/nhung-mon-an-dat-do-o-viet-nam-a96-5284176.jpg" alt="slide_food">
-                    <div class="carousel-caption">
-                        <h3 class="tx_02">Cực Kì Ngon</h3>
-                        <p>We had such a great time in LA!</p>
-                    </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img class="slider_01" src="https://eventusproduction.com/wp-content/uploads/2017/02/fresh-box.jpg" alt="slide_food">
-                    <div class="carousel-caption">
-                        <h3 class="tx_02">Siêu Siêu Ngon</h3>
-                        <p>We had such a great time in LA!</p>
-                    </div>
-                  </div>
-                </div>
-                
-                
-                <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                  <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#demo" data-slide="next">
-                  <span class="carousel-control-next-icon"></span>
-                </a>
-              </div>
+<div class="slide_1st">
+  <div class="container">
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+      <div class="carousel-inner carousel_customer">
+        {{#each combined}}
+          {{#each this.slides}}
+            <div class="carousel-item active">
+            <img class="slider_01" src="{{this.imageSlide}}" alt="slide_food">
+            <div class="carousel-caption">
+            <h3 class="tx_02">{{this.nameSlide}}</h3>
+            <p>We had such a great time in LA!</p>
+          </div>
         </div>
+          {{/each}}
+        {{/each}}
+        <div class="carousel-item">
+          <img class="slider_01"
+            src="https://i.vietgiaitri.com/2020/10/9/nhung-mon-an-dat-do-o-viet-nam-a96-5284176.jpg" alt="slide_food">
+          <div class="carousel-caption">
+            <h3 class="tx_02">Cực Kì Ngon</h3>
+            <p>We had such a great time in LA!</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img class="slider_01" src="https://eventusproduction.com/wp-content/uploads/2017/02/fresh-box.jpg"
+            alt="slide_food">
+          <div class="carousel-caption">
+            <h3 class="tx_02">Siêu Siêu Ngon</h3>
+            <p>We had such a great time in LA!</p>
+          </div>
+        </div>
+      </div>
+
+
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
     </div>
+  </div>
+</div>

@@ -28,6 +28,9 @@
                         <a href="" class="what_sigin"><i class="fa-brands fa-facebook"></i></a>
                         <a href="" class="what_sigin"><i class="fa-brands fa-google"></i></a>
                     </div>
+                     <div id="login-error-message" class="error-message" style="display: none;">
+        Đăng nhập thất bại. Vui lòng kiểm tra lại tên đăng nhập và mật khẩu.
+    </div>
                 </div>
             </div>
             <div class="content_register m-auto" id="regis">
@@ -112,9 +115,12 @@ var login = () =>{
         }
     }).then(data =>{
         setCookie('token', data.token, 1)
+        window.location.href = '/';
     })
     .catch(err =>{
         console.log(err);
+         $('#login-error-message').show();
+        alert('Đăng nhập thất bại. Vui lòng kiểm tra lại tên đăng nhập và mật khẩu.');
     })
 }
 
