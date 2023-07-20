@@ -11,7 +11,7 @@ class login {
             // Tìm kiếm tài khoản từ AccountModel dựa trên _id trong JWT
             AccountModel.findById(result._id)
               .then(account => {
-                if (account) {
+                if (account.role === 'admin') {
                  next()
                 } else {
                   return res.redirect('/login');

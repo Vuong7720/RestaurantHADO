@@ -4,183 +4,168 @@
         <button type="submit" class="btn_search_admin"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 </div>
- <button class="add_all_admin float-right m-2 mr-4" data-toggle="modal" data-target="#accountForm">
-                    <i class="fa-solid fa-plus"></i> Add Account
-                </button>
 
-<form action="account/account-handle-form-action" method="POST">
 
-<div class="select_all_delete ml-4 mt-2 mb-2 align-items-center">
-    <input type="checkbox" id="checkbox-all"> Chọn tất cả
-    <select name="action">
-        <option  value="">-- Chức năng</option>
-        <option value="delete">Xóa</option>
-    </select>
-    <button class="btn btn-success btn-submitAllChecked disabled">Thực hiện</button>
-</div>
-<table class="table table_admin">
-    <thead>
-        <tr>
-            <th scope="col">
-            </th>
-            <th scope="col">STT</th>
-            <th scope="col">User name</th>
-            <th scope="col">Password</th>
-            <th scope="col">Email</th>
-            <th scope="col">Role</th>
-            <th scope="col">
-               
-            </th>
-        </tr>
-    </thead>
-    
-    <tbody>
-        {{#each accounts}}
-        <tr>
-            <th scope="row">
-                  <input type="checkbox" name="collectionIds" value="{{this._id}}">
-            </th>
-            <td class="content_admin">{{sum @index 1}}</td>
-            <td class="content_admin">{{this.username}}</td>
-            <td class="content_admin">{{this.password}}</td>
-            <td class="content_admin">{{this.email}}</td>
-            <td class="content_admin">{{this.role}}</td>
-            <td class="content_admin">
-                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
-                    data-target="#updateAccount{{this._id}}">
-                    <i class="fa-solid fa-pencil"></i>
+<button class="add_all_admin float-right m-2 mr-4" data-toggle="modal" data-target="#accountForm">
+    <i class="fa-solid fa-plus"></i> Add Account
+</button>
+<div class="modal fade" id="accountForm" tabindex="-1" role="dialog" aria-labelledby="accountFormLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="accountFormLabel">Add Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
-                <button class="btn_ud_admin" 
-                data-id="{{this._id}}" data-toggle="modal"
-                    data-target="#deleteAccount{{this._id}}">
-                    <i class="fa-solid fa-trash-can-arrow-up"></i>
-                </button>
-            </td>
-        </tr>
-        {{else}}
-        <tr>
-            <td colspan="7" class="content_admin">
-                Chưa có tài khoản nào ...
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-</form>
-<!-- Modal -->
-    <div class="modal fade" id="accountForm" tabindex="-1" role="dialog" aria-labelledby="accountFormLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="accountFormLabel">Add Account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="account/register">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" name="email" class="form-control" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">User Name</label>
-                            <input type="text" name="username" class="form-control" placeholder="Enter username">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password" class="form-control" placeholder="Password">
-                        </div>
-                        <button type="submit" class="btn btn-success float-right">Add Acount</button>
-                    </form>
-                </div>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="account/register">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="email" class="form-control" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">User Name</label>
+                        <input type="text" name="username" class="form-control" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" name="password" class="form-control" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-success float-right">Add Acount</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
+
+<form action="account/account-handle-form-action" method="POST">
+
+    <div class="select_all_delete ml-4 mt-2 mb-2 align-items-center">
+        <input type="checkbox" id="checkbox-all"> Chọn tất cả
+        <select name="action">
+            <option value="">-- Chức năng</option>
+            <option value="delete">Xóa</option>
+        </select>
+        <button class="btn btn-success btn-submitAllChecked disabled">Thực hiện</button>
+    </div>
+    <table class="table table_admin">
+        <thead>
+            <tr>
+                <th scope="col">
+                </th>
+                <th scope="col">STT</th>
+                <th scope="col">User name</th>
+                <th scope="col">Password</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">
+
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each accounts}}
+            <tr>
+                <th scope="row">
+                    <input type="checkbox" name="collectionIds" value="{{this._id}}">
+                </th>
+                <td class="content_admin">{{sum @index 1}}</td>
+                <td class="content_admin">{{this.username}}</td>
+                <td class="content_admin">{{this.password}}</td>
+                <td class="content_admin">{{this.email}}</td>
+                <td class="content_admin">{{this.role}}</td>
+                <td class="content_admin">
+                    <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                        data-target="#updateAccount{{this._id}}"  type="button">
+                        <i class="fa-solid fa-pencil"></i>
+                    </button>
+                    <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                        data-target="#deleteAccount{{this._id}}"  type="button">
+                        <i class="fa-solid fa-trash-can-arrow-up"></i>
+                    </button>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="7" class="content_admin">
+                    Chưa có tài khoản nào ...
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</form>
 
 {{#each accounts}}
-        <div class="modal fade" id="updateAccount{{this._id}}" tabindex="-1" role="dialog"
-            aria-labelledby="accountFormLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="accountFormLabel">Edit Account</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<div class="modal fade" id="updateAccount{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="accountFormLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="accountFormLabel">Edit Account</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="account/update/{{this._id}}?_method=PUT">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" value="{{this.email}}" name="Newemail" class="form-control"
+                            placeholder="Enter email">
                     </div>
-                    <div class="modal-body">
-                        <form method="POST" action="account/update/{{this._id}}?_method=PUT">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" value="{{this.email}}" name="Newemail" class="form-control"
-                                    placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">User Name</label>
-                                <input type="text" value="{{this.username}}" name="Newusername" class="form-control"
-                                    placeholder="Enter username">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" value="{{this.password}}" name="Newpassword" class="form-control"
-                                    placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Role</label>
-                                <input type="text" value="{{this.role}}" name="Newrole" class="form-control"
-                                    placeholder="Enter role">
-                            </div>
-                            <button type="submit" class="btn btn-success float-right">Update</button>
-                        </form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">User Name</label>
+                        <input type="text" value="{{this.username}}" name="Newusername" class="form-control"
+                            placeholder="Enter username">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" value="{{this.password}}" name="Newpassword" class="form-control"
+                            placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Role</label>
+                        <input type="text" value="{{this.role}}" name="Newrole" class="form-control"
+                            placeholder="Enter role">
+                    </div>
+                    <button type="submit" class="btn btn-success float-right">Update</button>
+                </form>
             </div>
         </div>
-        {{/each}}
+    </div>
+</div>
+{{/each}}
 
-        {{#each accounts}}
-        <div class="modal fade" id="deleteAccount{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete account ???</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="account/{{this._id}}?_method=DELETE">
-                        <div class="btn_delete float-right">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
+{{#each accounts}}
+<div class="modal fade" id="deleteAccount{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete account ???</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        </div>  
-        {{/each}}
-{{!-- <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
-    </li>
-   {{#each sumPage}}
-    <li class="page-item">
-      <a class="page-link" href="#">{{this}}</a>
-    </li>
-    {{/each}}
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
-  </ul>
-</nav> --}}
+            <div class="modal-body">
+                <form method="POST" action="account/{{this._id}}?_method=DELETE">
+                    <div class="btn_delete float-right">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+
 
 <div id="content"></div>
 
 <div id="pagi"></div>
-
-

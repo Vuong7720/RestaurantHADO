@@ -4,163 +4,169 @@
         <button type="submit" class="btn_search_admin"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 </div>
+
+
 <button class="add_all_admin float-right m-2 mr-4" data-toggle="modal" data-target="#newsForm">
-                    <i class="fa-solid fa-plus"></i> Add News
+    <i class="fa-solid fa-plus"></i> Add News
+</button>
+<div class="modal fade" id="newsForm" tabindex="-1" role="dialog" aria-labelledby="newsFormLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newsFormLabel">ADD New</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
-
-<form action="staffs/news-handle-form-action" method="POST">
-
-<div class="select_all_delete ml-4 mt-2 mb-2 align-items-center">
-    <input type="checkbox" id="checkbox-all"> Chọn tất cả
-    <select name="action">
-        <option  value="">-- Chức năng</option>
-        <option value="delete">Xóa</option>
-    </select>
-    <button class="btn btn-success btn-submitAllChecked disabled">Thực hiện</button>
-</div>
-<table class="table table_admin">
-    <thead>
-        <tr>
-            <th scope="col">
-               
-            </th>
-            <th scope="col">Name</th>
-            <th scope="col">Title</th>
-            <th scope="col">author</th>
-            <th scope="col">like</th>
-            
-            <th scope="col">
-                
-            </th>
-        </tr>
-    </thead>
-    <!-- Modal -->
-   
-    <tbody>
-        {{#each news}}
-        <tr>
-            <th scope="row">
-                  <input type="checkbox" name="collectionIds" value="{{this._id}}">
-            </th>
-            <td class="content_admin">{{this.nameNews}}</td>
-            <td class="content_admin">{{this.titleNews}}</td>
-            <td class="content_admin">{{this.authorNews}}</td>
-            <td class="content_admin">{{this.likeNews}}</td>
-            <td class="content_admin">
-                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
-                    data-target="#updatenews{{this._id}}">
-                    <i class="fa-solid fa-pencil"></i>
-                </button>
-                <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
-                    data-target="#deletenews{{this._id}}">
-                    <i class="fa-solid fa-trash-can-arrow-up"></i>
-                </button>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-</form>
- <div class="modal fade" id="newsForm" tabindex="-1" role="dialog" aria-labelledby="newsFormLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="newsFormLabel">ADD New</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="news/" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Name News</label>
-                            <input type="text" name="nameNews" class="form-control" placeholder="Enter your News">
-                        </div>
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" name="titleNews" class="form-control" placeholder="Enter title News">
-                        </div>
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" name="authorNews" class="form-control" placeholder="Enter title News">
-                        </div>
-                        <div class="form-group">
-                            <label>Image</label>
-                            <input type="file" name="imageNews">
-                        </div>
-                        <div class="form-group">
-                             <label for="exampleInput">Post</label><br>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="news/" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name News</label>
+                        <input type="text" name="nameNews" class="form-control" placeholder="Enter your News">
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="titleNews" class="form-control" placeholder="Enter title News">
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="authorNews" class="form-control" placeholder="Enter title News">
+                    </div>
+                    <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" name="imageNews">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInput">Post</label><br>
                         <textarea name="postNews" value="postNews" id="" cols="53" rows="3"></textarea>
-                        </div>
-                </div>
-                <button type="submit" class="btn btn-success float-right m-2">Add News</button>
-                </form>
+                    </div>
             </div>
+            <button type="submit" class="btn btn-success float-right m-2">Add News</button>
+            </form>
         </div>
     </div>
-    </div>
+</div>
 
- {{#each news}}
-             <div class="modal fade" id="updatenews{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="newsFormLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="newsFormLabel">EDIT News</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+
+
+<form action="news/news-handle-form-action" method="POST">
+
+    <div class="select_all_delete ml-4 mt-2 mb-2 align-items-center">
+        <input type="checkbox" id="checkbox-all"> Chọn tất cả
+        <select name="action">
+            <option value="">-- Chức năng</option>
+            <option value="delete">Xóa</option>
+        </select>
+        <button class="btn btn-success btn-submitAllChecked disabled">Thực hiện</button>
+    </div>
+    <table class="table table_admin">
+        <thead>
+            <tr>
+                <th scope="col">
+
+                </th>
+                <th scope="col">Name</th>
+                <th scope="col">Title</th>
+                <th scope="col">author</th>
+                <th scope="col">like</th>
+
+                <th scope="col">
+
+                </th>
+            </tr>
+        </thead>
+        <!-- Modal -->
+
+        <tbody>
+            {{#each news}}
+            <tr>
+                <th scope="row">
+                    <input type="checkbox" name="collectionIds" value="{{this._id}}">
+                </th>
+                <td class="content_admin">{{this.nameNews}}</td>
+                <td class="content_admin">{{this.titleNews}}</td>
+                <td class="content_admin">{{this.authorNews}}</td>
+                <td class="content_admin">{{this.likeNews}}</td>
+                <td class="content_admin">
+                    <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                        data-target="#updatenews{{this._id}}"  type="button">
+                        <i class="fa-solid fa-pencil"></i>
                     </button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" action="news/{{this._id}}?_method=PUT" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Name News</label>
-                            <input type="text" value="{{this.nameNews}}" name="NewnameNews" class="form-control" placeholder="Enter your News">
-                        </div>
-                        <div class="form-group">
-                            <label>Title</label>
-                            <input type="text" value="{{this.titleNews}}" name="NewtitleNews" class="form-control" placeholder="Enter title News">
-                        </div>
-                        <div class="form-group">
-                            <label>Author</label>
-                            <input type="text" value="{{this.authorNews}}" name="NewauthorNews" class="form-control" placeholder="Enter title News">
-                        </div>
-                        <div class="form-group">
-                            <label>Like</label>
-                            <input type="text" value="{{this.likeNews}}" name="NewlikeNews" class="form-control" placeholder="Enter title News">
-                        </div>
-                        <div class="form-group">
-                            <label>Image</label>
-                            <input type="file" name="NewimageNews">
-                        </div>
-                </div>
-                <button type="submit" class="btn btn-success float-right m-2">Update News</button>
+                    <button class="btn_ud_admin" data-id="{{this._id}}" data-toggle="modal"
+                        data-target="#deletenews{{this._id}}"  type="button">
+                        <i class="fa-solid fa-trash-can-arrow-up"></i>
+                    </button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</form>
+
+{{#each news}}
+<div class="modal fade" id="updatenews{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="newsFormLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newsFormLabel">EDIT News</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="news/{{this._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Name News</label>
+                        <input type="text" value="{{this.nameNews}}" name="NewnameNews" class="form-control"
+                            placeholder="Enter your News">
+                    </div>
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" value="{{this.titleNews}}" name="NewtitleNews" class="form-control"
+                            placeholder="Enter title News">
+                    </div>
+                    <div class="form-group">
+                        <label>Author</label>
+                        <input type="text" value="{{this.authorNews}}" name="NewauthorNews" class="form-control"
+                            placeholder="Enter title News">
+                    </div>
+                    <div class="form-group">
+                        <label>Like</label>
+                        <input type="text" value="{{this.likeNews}}" name="NewlikeNews" class="form-control"
+                            placeholder="Enter title News">
+                    </div>
+                    <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" name="NewimageNews">
+                    </div>
+            </div>
+            <button type="submit" class="btn btn-success float-right m-2">Update News</button>
+            </form>
+        </div>
+    </div>
+</div>
+{{/each}}
+{{#each news}}
+<div class="modal fade" id="deletenews{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete news ???</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="news/{{this._id}}?_method=DELETE">
+                    <div class="btn_delete float-right">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-        {{/each}}
-         {{#each news}}
-        <div class="modal fade" id="deletenews{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete news ???</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="news/{{this._id}}?_method=DELETE">
-                        <div class="btn_delete float-right">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>  
-        {{/each}}
+</div>
+{{/each}}
