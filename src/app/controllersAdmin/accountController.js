@@ -81,7 +81,7 @@ class AccountController {
         })
         .then(data => {
                 if (data) {
-                    return res.json('account already exists')
+                    return res.redirect('back')
                 } else {
                     return AccountModel.create({
                         username: username,
@@ -149,6 +149,10 @@ class AccountController {
         })
             .catch(err =>{console.log(err)})
 
+    }
+    logOut(req, res, next){
+        res.clearCookie('token');
+        return res.redirect('/login');
     }
 
     softDeleteAccount(req, res, next) {

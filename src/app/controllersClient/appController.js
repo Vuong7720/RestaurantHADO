@@ -1,4 +1,5 @@
 const CombinedModel = require('../../models/dataModel');
+const jwt = require('jsonwebtoken')
 const { mutipleMongooseToObject } = require('../../util/mongoose');
 const SlideModel = require('../../models/slideModel');
 const StaffModel = require('../../models/staffModel');
@@ -32,8 +33,10 @@ class DataControllerClient {
           res.status(500).send('Error saving data');
         }
       }
-    // ----------------có thể giải quyết vấn đề ở đây
+
       showData(req, res, next) {
+        var token = req.cookies.token;
+          var result = jwt.verify(token, 'mk');
         CombinedModel.find({})
           .populate('slides')
           .populate('foods')
@@ -43,6 +46,7 @@ class DataControllerClient {
           .exec()
           .then(combined => {
             res.render('clients/show', {
+              isLogin: result,
               combined: mutipleMongooseToObject(combined),
             });
           })
