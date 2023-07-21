@@ -23,6 +23,7 @@ class AccountController {
                     
                         res.render('admin/show',{
                             sumPage:sumPage,
+                            page:page,
                             showAccount:true,
                             accounts: mutipleMongooseToObject(accounts),
                         })

@@ -348,61 +348,25 @@
   </div>
 
   <div class="story_content mt-1 pb-2">
+    {{#each combined}}
+            {{#each this.news}}
     <div class="container">
       <span class="title_story">Câu Chuyện</span>
-      <div class="row">
+      <div class="title_News ml-2"><i class="fa-solid fa-bahai"></i> {{this.titleNews}}</div>
+      <div class="row mt-4">
         <div class="col-xl-6 align-self-center">
           <span class="text_story_content">
-            Cả một năm bận rộn với công việc, Tết là thời gian gia đình bạn quây quần,
-            tụ họp vậy phải chuẩn bị những món ăn tuyệt vời nhất để cùng nhau tận hưởng không khí năm mới đang về.
-            Thế nhưng nếu bạn là người sống tối giản, muốn đơn giản hóa việc nấu nướng ngày Tết để có thêm thời gian
-            dành cho những người thân yêu thì phải lựa chọn nấu Tết theo cách nào đây?
+            {{this.postNews}}
           </span>
         </div>
-        <div class="col-xl-6">
-          <img src="/img/story1.jpg" alt="" class="img_story">
+        <div class="col-xl-6 align-items-center">
+          <img src="{{this.imageNews}}" alt="{{this.nameNews}}" class="img_story">
           <p class="rotage_r rotage_r_story"></p>
-          <p class="tille_news">Món ăn ngày tết</p>
+          <p class="tille_news text-center m-auto">{{this.nameNews}}</p>
         </div>
       </div>
     </div>
-    <div class="container">
-      <span class="title_story">Câu Chuyện</span>
-      <div class="row d-flex flex-row-reverse">
-        <div class="col-xl-6 align-self-center">
-          <span class="text_story_content">
-            Cả một năm bận rộn với công việc, Tết là thời gian gia đình bạn quây quần,
-            tụ họp vậy phải chuẩn bị những món ăn tuyệt vời nhất để cùng nhau tận hưởng không khí năm mới đang về.
-            Thế nhưng nếu bạn là người sống tối giản, muốn đơn giản hóa việc nấu nướng ngày Tết để có thêm thời gian
-            dành cho những người thân yêu thì phải lựa chọn nấu Tết theo cách nào đây?
-          </span>
-        </div>
-        <div class="col-xl-6">
-          <img src="/img/story1.jpg" alt="" class="img_story">
-          <p class="rotage_r rotage_r_story"></p>
-          <p class="tille_news">Món ăn ngày tết</p>
-        </div>
-      </div>
-    </div>
-    <div class="container">
-      <span class="title_story">Câu Chuyện</span>
-      <div class="row">
-        <div class="col-xl-6 align-self-center">
-          <span class="text_story_content">
-            Cả một năm bận rộn với công việc, Tết là thời gian gia đình bạn quây quần,
-            tụ họp vậy phải chuẩn bị những món ăn tuyệt vời nhất để cùng nhau tận hưởng không khí năm mới đang về.
-            Thế nhưng nếu bạn là người sống tối giản, muốn đơn giản hóa việc nấu nướng ngày Tết để có thêm thời gian
-            dành cho những người thân yêu thì phải lựa chọn nấu Tết theo cách nào đây?
-          </span>
-        </div>
-        <div class="col-xl-6">
-          <img src="/img/story1.jpg" alt="" class="img_story">
-          <p class="rotage_r rotage_r_story"></p>
-          <p class="tille_news">Món ăn ngày tết</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
+{{/each}}
+{{/each}}
 
 </div>

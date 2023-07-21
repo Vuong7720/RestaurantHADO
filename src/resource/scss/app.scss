@@ -228,20 +228,30 @@ a:hover{
 }
 .rotage_r{
     position: absolute;
-    width:100px;
+    width: 100px;
     height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
     border: 4px solid #eeeaea;
-    transform: rotate(45deg);
-    animation: spin 5s linear infinite;
+}
+.title_News{
+    font-size: 1.2rem;
+    font-weight: 700;
+    color:black
+}
+.title_News i{
+    color: rgb(7, 134, 166);
 }
 .tille_news{
     position: absolute;
     font-size: 25px;
     font-weight: bold;
-    color: $text2-color;
-    right: 190px;
-    top: 130px;
-    text-shadow: 0px 0px 5px #fa6806;
+    color: white; 
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 

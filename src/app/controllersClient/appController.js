@@ -32,7 +32,7 @@ class DataControllerClient {
           res.status(500).send('Error saving data');
         }
       }
-    
+    // ----------------có thể giải quyết vấn đề ở đây
       showData(req, res, next) {
         CombinedModel.find({})
           .populate('slides')
