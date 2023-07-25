@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const StaffController = require('../../app/controllersAdmin/staffController')
-const upload = require('../../middleware/uploadImgFoods')
+const upload = require('../../middleware/uploadimgStaff')
 const login = require('../../middleware/login')
 
 router.get('/', login.logAdmin, StaffController.showStaff)

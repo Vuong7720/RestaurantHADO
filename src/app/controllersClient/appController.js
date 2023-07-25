@@ -36,7 +36,14 @@ class DataControllerClient {
 
       showData(req, res, next) {
         var token = req.cookies.token;
-          var result = jwt.verify(token, 'mk');
+          var result = null;
+          try {
+            if (token) {
+                result = jwt.verify(token, 'mk');
+            }
+        } catch (err) {
+            console.error('Invalid token:', err.message);
+        }
         CombinedModel.find({})
           .populate('slides')
           .populate('foods')
