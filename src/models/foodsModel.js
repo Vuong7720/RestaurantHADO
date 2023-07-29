@@ -8,6 +8,7 @@ const FoodsSchema = new Schema({
     titleFood:{type: String},
     price:{type: Number},
     rate:{type: Number, default:0},
+    cate:{type: String, default:"fast"},
     createdAt:{type: Date, default:Date.now()},
     updatedAt:{type: Date, default:Date.now()}
 },{

@@ -32,6 +32,10 @@
                         <label>Price</label>
                         <input type="number" name="price" class="form-control" placeholder="Enter price">
                     </div>
+                     <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" name="cate" class="form-control" placeholder="Enter category">
+                    </div>
                     <div class="form-group">
                         <label>Image</label>
                         <input type="file" name="imageFood">
@@ -63,13 +67,13 @@
                 <th scope="col">
 
                 </th>
+                 <th scope="col">STT</th>
                 <th scope="col">Name food</th>
                 <th scope="col">Title</th>
                 <th scope="col">Price</th>
                 <th scope="col">Rate</th>
-                <th scope="col">
-
-                </th>
+                <th scope="col"></th>
+               
             </tr>
         </thead>
         <tbody>
@@ -78,6 +82,7 @@
                 <th scope="row">
                     <input type="checkbox" name="collectionIds" value="{{this._id}}">
                 </th>
+                <td class="content_admin">{{sum @index 1}}</td>
                 <td class="content_admin">{{this.nameFood}}</td>
                 <td class="content_admin">{{this.titleFood}}</td>
                 <td class="content_admin">{{this.price}}</td>
@@ -98,6 +103,15 @@
     </table>
 </form>
 
+<ul class="pagi_cs pagination pagination-sm justify-content-center mt-3">
+        <li class="page_01 page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li>
+{{#range 1 (pagi totalCount pageSize)}}
+  <li class="page_01 page-item">
+    <a class="page-link" href="{{baseUrl}}?page={{this}}">{{this}}</a>
+  </li>
+{{/range}}
+        <li class="page_01 page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li>
+      </ul>
 
 
 
@@ -128,6 +142,10 @@
                         <label>Price</label>
                         <input type="number" value="{{this.price}}" name="Newprice" class="form-control"
                             placeholder="Enter price">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" name="Newcate" value="{{this.cate}}" class="form-control" placeholder="Enter category">
                     </div>
                     <div class="form-group">
                         <label>Image</label>

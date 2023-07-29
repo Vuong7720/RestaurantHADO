@@ -3,64 +3,136 @@ const {mutipleMongooseToObject} = require('../../util/mongoose')
 const jwt = require('jsonwebtoken')
 
 class AccountController {
-    showAccount(req, res, next) {
-        const pageSize = 10;
-        var page = req.query.page
-        var q = req.query.q;
-        if (page) {
-            page = parseInt(page)
-            if (page <= 1) {
-                page = 1
-            }
-            var skip = (page - 1) * pageSize
+    // showAccount(req, res, next) {
+    //     const pageSize = 10;
+    //     var page = req.query.page
+    //     var q = req.query.q;
+    //     if (page) {
+    //         page = parseInt(page)
+    //         if (page <= 1) {
+    //             page = 1
+    //         }
+    //         var skip = (page - 1) * pageSize
 
+    //         AccountModel.find({})
+    //             .skip(skip)
+    //             .limit(pageSize)
+    //             .then(accounts => {
+    //                 AccountModel.countDocuments({}).then((total)=>{
+    //                     var sumPage = Math.ceil(total/pageSize)
+                    
+    //                     res.render('admin/show',{
+    //                         sumPage:sumPage,
+    //                         page:page,
+    //                         showAccount:true,
+    //                         accounts: mutipleMongooseToObject(accounts),
+    //                     })
+    //                 })
+    //             })
+    //             .catch(err => {
+    //                 res.status(500).json('loi server1')
+    //             })
+    //     }
+    //     else if(q){
+    //         AccountModel.find({
+    //             $or: [
+    //               { username: { $regex: q, $options: 'i' } },
+    //               { email: { $regex: q, $options: 'i' } },
+    //             ],
+    //           })
+    //           .then(accounts => {
+    //               res.render('admin/show',{
+    //                 showAccount:true,
+    //                   accounts: mutipleMongooseToObject(accounts),
+    //               })
+    //           })
+    //           .catch(err => {
+    //               res.status(500).json('Lỗi server account')
+    //           });
+    //     }
+    //     else{
+    //         AccountModel.find({})
+    //         .limit(pageSize)
+    //             .then(accounts => {
+    //                 res.render('admin/show',{
+    //                     showAccount:true,
+    //                     accounts: mutipleMongooseToObject(accounts),
+    //                 })
+    //             })
+    //             .catch(err => {
+    //                 res.status(500).json('Lỗi server account')
+    //             });
+    //     }
+    // }
+    showAccount(req, res, next) {
+        const pageSize = 5;
+        var page = req.query.page;
+        var q = req.query.q;
+        
+        if (page) {
+            page = parseInt(page);
+            if (page <= 1) {
+                page = 1;
+            }
+            var skip = (page - 1) * pageSize;
+    
             AccountModel.find({})
                 .skip(skip)
                 .limit(pageSize)
                 .then(accounts => {
-                    AccountModel.countDocuments({}).then((total)=>{
-                        var sumPage = Math.ceil(total/pageSize)
-                    
-                        res.render('admin/show',{
-                            sumPage:sumPage,
-                            page:page,
-                            showAccount:true,
-                            accounts: mutipleMongooseToObject(accounts),
+                    AccountModel.countDocuments({})
+                        .then(totalCount => {
+                            res.render('admin/show', {
+                                showAccount:true,
+                                pageSize: pageSize,
+                                accounts: mutipleMongooseToObject(accounts),
+                                totalCount: totalCount,
+                            });
                         })
-                    })
+                        .catch(err => {
+                            res.status(500).json('Lỗi server khi đếm số lượng bản ghi');
+                        });
                 })
                 .catch(err => {
-                    res.status(500).json('loi server1')
-                })
-        }
-        else if(q){
+                    res.status(500).json('Lỗi server khi lấy dữ liệu trang');
+                });
+        } else if (q) {
             AccountModel.find({
                 $or: [
-                  { username: { $regex: q, $options: 'i' } },
-                  { email: { $regex: q, $options: 'i' } },
+                    { username: { $regex: q, $options: 'i' } },
+                    { email: { $regex: q, $options: 'i' } },
                 ],
-              })
-              .then(accounts => {
-                  res.render('admin/show',{
-                    showAccount:true,
-                      accounts: mutipleMongooseToObject(accounts),
-                  })
-              })
-              .catch(err => {
-                  res.status(500).json('Lỗi server account')
-              });
-        }
-        else{
+            })
+                .then(accounts => {
+                    res.render('admin/show', {
+                        showAccount:true,
+                        pageSize: pageSize,
+                        accounts: mutipleMongooseToObject(accounts),
+                    });
+                })
+                .catch(err => {
+                    res.status(500).json('Lỗi server khi tìm kiếm dữ liệu');
+                });
+        } else {
+           
             AccountModel.find({})
             .limit(pageSize)
                 .then(accounts => {
-                    res.render('admin/show',{
-                        showAccount:true,
-                        accounts: mutipleMongooseToObject(accounts),
-                    })
+                    AccountModel.countDocuments({})
+                        .then(totalCount => {
+                            res.render('admin/show', {
+                                showAccount:true,
+                                pageSize: pageSize,
+                                accounts: mutipleMongooseToObject(accounts),
+                                totalCount: totalCount,
+                            });
+                        })
+                        .catch(err => {
+                            res.status(500).json('Lỗi server khi đếm số lượng bản ghi');
+                        });
                 })
                 .catch(err => {
-                    res.status(500).json('Lỗi server account')
+                    res.status(500).json('Lỗi server khi lấy dữ liệu');
                 });
         }
     }

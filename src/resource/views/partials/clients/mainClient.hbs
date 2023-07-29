@@ -28,6 +28,7 @@
 
             {{#each combined}}
             {{#each this.foods}}
+            {{#if (eq this.cate "fast")}}
            <div class="col-xl-3 mt-2">
               <div class="cd_01 card" style="width:100%">
                 <img class="card-img-top image_food" src="{{this.imageFood}} " alt="{{this.nameFood}}">
@@ -38,6 +39,7 @@
                 </div>
               </div>
             </div>
+            {{/if}}
             {{/each}}
             {{/each}}
             
@@ -46,97 +48,22 @@
         <div id="menu1" class="container tab-pane fade"><br>
           <h3 class="tx_02">Món Chính</h3>
           <div class="row">
-            <div class="col-xl-3 mt-2">
+            {{#each combined}}
+            {{#each this.foods}}
+            {{#if (eq this.cate "lunch")}}
+           <div class="col-xl-3 mt-2">
               <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
+                <img class="card-img-top image_food" src="{{this.imageFood}} " alt="{{this.nameFood}}">
                 <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
+                  <h4 class="card-title tx_fo">{{this.nameFood}}</h4>
+                  <p class="ct_1 card-text">{{this.titleFood}} </p>
+                  <a href="#" class="btn buy_now stretched-link">Đặt mua ngay</a>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
+           {{/if}}
+            {{/each}}
+            {{/each}}
 
 
           </div>
@@ -144,97 +71,22 @@
         <div id="menu2" class="container tab-pane fade"><br>
           <h3 class="tx_02">Đồ Uống</h3>
           <div class="row">
-            <div class="col-xl-3 mt-2">
+            {{#each combined}}
+            {{#each this.foods}}
+            {{#if (eq this.cate "juice")}}
+           <div class="col-xl-3 mt-2">
               <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
+                <img class="card-img-top image_food" src="{{this.imageFood}} " alt="{{this.nameFood}}">
                 <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
+                  <h4 class="card-title tx_fo">{{this.nameFood}}</h4>
+                  <p class="ct_1 card-text">{{this.titleFood}} </p>
+                  <a href="#" class="btn buy_now stretched-link">Đặt mua ngay</a>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
+           {{/if}}
+            {{/each}}
+            {{/each}}
 
 
           </div>
@@ -242,97 +94,24 @@
         <div id="menu3" class="container tab-pane fade"><br>
           <h3 class="tx_02">Ăn Vặt</h3>
           <div class="row">
-            <div class="col-xl-3 mt-2">
+            {{#each combined}}
+            {{#each this.foods}}
+            {{#if (eq this.cate "snacks")}}
+           <div class="col-xl-3 mt-2">
               <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
+                <img class="card-img-top image_food" src="{{this.imageFood}} " alt="{{this.nameFood}}">
                 <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
+                  <h4 class="card-title tx_fo">{{this.nameFood}}</h4>
+                  <p class="ct_1 card-text">{{this.titleFood}} </p>
+                  <a href="#" class="btn buy_now stretched-link">Đặt mua ngay</a>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 mt-2">
-              <div class="cd_01 card" style="width:100%">
-                <img class="card-img-top"
-                  src="https://sypham1.files.wordpress.com/2018/10/660x380_3thumb-20170609172240.jpg?w=660"
-                  alt="Card image">
-                <div class="cb_01 card-body">
-                  <h4 class="card-title tx_fo">Humberger</h4>
-                  <p class="ct_1 card-text">Một món ăn nhanh rất được ưa chuộng, với mùi vị đặt trưng do sự phối hợp
-                    tuyệt vời giữa các nguyên liệu sạch sẽ mang lại cho bạn cảm giác hài lòng</p>
-                  <a href="#" class="btn buy_now stretched-link">Mua ngay</a>
-                </div>
-              </div>
-            </div>
+           {{/if}}
+            {{/each}}
+            {{/each}}
+
+
           </div>
         </div>
       </div>
@@ -370,3 +149,16 @@
 {{/each}}
 
 </div>
+
+
+<form id="hidden-form" action="/create" method="post" style="display: none;">
+ 
+</form>
+
+<script>
+document.getElementById('link').addEventListener('click', function(event) {
+  event.preventDefault();
+  var form = document.getElementById('hidden-form');
+  form.submit();
+});
+</script>

@@ -99,6 +99,16 @@
         </tbody>
     </table>
 </form>
+<ul class="pagi_cs pagination pagination-sm justify-content-center mt-3">
+        <li class="page_01 page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-left"></i></a></li>
+{{#range 1 (pagi totalCount pageSize)}}
+  <li class="page_01 page-item">
+    <a class="page-link" href="{{baseUrl}}?page={{this}}">{{this}}</a>
+  </li>
+{{/range}}
+        <li class="page_01 page-item"><a class="page-link" href="#"><i class="fa-solid fa-angles-right"></i></a></li>
+      </ul>
+
 
 {{#each accounts}}
 <div class="modal fade" id="updateAccount{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="accountFormLabel"

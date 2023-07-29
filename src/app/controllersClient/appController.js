@@ -25,9 +25,8 @@ class DataControllerClient {
             staffs: staffData
           });
     
-          const savedData = await combinedData.save();
-          console.log('Data saved:', savedData);
-          res.redirect('back');
+          await combinedData.save();
+          res.redirect('/');
         } catch (error) {
           console.error('Error saving data:', error);
           res.status(500).send('Error saving data');

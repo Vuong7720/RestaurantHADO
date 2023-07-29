@@ -8,7 +8,6 @@ class login {
           var token = req.cookies.token;
           var result = jwt.verify(token, 'mk');
           if (result) {
-            // Tìm kiếm tài khoản từ AccountModel dựa trên _id trong JWT
             AccountModel.findById(result._id)
               .then(account => {
                 if (account.role === 'admin') {

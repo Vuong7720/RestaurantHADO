@@ -31,22 +31,19 @@ const engine = exphbs.create({
   helpers: {
    sum:(a,b)=>a+b,
    eq:(v1, v2) => v1 === v2,
-   pagi:(b1, b2)=> Math.ceil(b1/b2),
-   batch: function(context, blockSize, options) {
-    var ret = '';
-    var counter = 0;
-    var len = Math.ceil(context.length / blockSize);
-
-    while (counter < len) {
-      var start = counter * blockSize;
-      var end = start + blockSize;
-      var slice = context.slice(start, end);
-      ret += options.fn(slice);
-      counter++;
+   arrPage:(v1, v2) => {
+    for (let i = 0; i < v1; i++) {
+      v2.push(i + 1);
     }
-
-    return ret;
+   },
+   pagi:(b1, b2)=> Math.ceil(b1/b2),
+   range:(start, end, options)=>{
+    let result = '';
+  for (let i = start; i <= end; i++) {
+    result += options.fn(i);
   }
+  return result;
+   }
   }
 });
 app.engine('.hbs', engine.engine);
