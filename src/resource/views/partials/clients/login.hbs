@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="login_right">
-                    <div action="/admin/account/login" method="POST">
+                    <form action="/admin/account/login" method="POST">
                         <div class="ip">
                             <label for="">User Name</label>
                             <input type="text" name="username" id="username" class="ip_log" placeholder="UserName">
@@ -21,7 +21,7 @@
                             <input type="password" name="password" id="password" class="ip_log" placeholder="password">
                         </div>
                         <button onclick="login()" class="submit">Login</button>
-                    </div>
+                    </form>
                     <div class="question_user">
                         <span>Bạn chưa có tài khoản ?</span>
                         <span class="what_sigin change_btn" onclick="changelog()">SignUp ?</span>

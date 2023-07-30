@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const connectionString = 'mongodb://127.0.0.1:27017/serverHADO';
+const connectionString = 'mongodb+srv://userConnect:user123@atlascluster.emgnhic.mongodb.net/serverHADO?retryWrites=true&w=majority';
 
 mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
