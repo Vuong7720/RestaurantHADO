@@ -15,37 +15,31 @@
   color: #ffbf00; }
 
 .content {
-  width: 100%;
-  height: 700px;
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
   background-image: url(https://a-static.besthdwallpaper.com/autumn-forest-and-yellow-leaves-wallpaper-2560x720-12212_72.jpg); }
 
 .content_app {
-  margin: 0 auto;
-  width: 1200px;
-  height: 500px;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.1); }
+
+.hiden_1 {
+  display: none; }
 
 .content_login {
-  width: 800px !important;
-  height: 400px;
-  display: flex;
-  justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.1); }
+  width: 100%;
+  height: 400px; }
 
 .content_register {
-  width: 800px !important;
-  height: 500px;
-  display: none;
-  justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.1); }
+  width: 100%;
+  height: 500px; }
 
 .login_left {
-  width: 50%;
+  width: 100%;
   height: 100px;
-  margin: 100px 20px 0 0px;
+  margin: 20px 20px 0 0px;
   text-align: center; }
 
 .title {
@@ -58,7 +52,7 @@
   color: white; }
 
 .login_right {
-  width: 50%;
+  width: 100%;
   margin: 0 0px 0 20px;
   text-align: center; }
 
@@ -157,6 +151,28 @@
 
 .ct_2 {
   color: #ff5100; }
+
+.menu_account_sm {
+  display: none !important; }
+
+@media (max-width: 992px) {
+  .name_restaurant {
+    display: none; }
+  .menu_account_lg {
+    display: none !important; }
+  .menu_account_sm {
+    display: block !important; }
+  .slide_customer {
+    height: 250px !important; }
+  .ct_1 {
+    display: none !important; } }
+
+.name_restaurant {
+  color: black; }
+
+@media (max-width: 576px) {
+  .name_restaurant {
+    display: none; } }
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -260,14 +276,14 @@ a:hover {
 
 .slider_01 {
   width: 1100px;
-  height: 400px; }
+  height: 100%; }
 
 .slide_customer {
   height: 400px; }
 
 /* ------------------------------------------end slider */
 .all_content {
-  background-image: linear-gradient(to right, #f0afce, #ef294a); }
+  background-image: linear-gradient(to right, #f0afce, #f6667e); }
 
 .buy_now {
   background-color: #ff5100 !important;
@@ -332,7 +348,7 @@ a:hover {
 
 /* -----------------------------end main-content */
 .story_content {
-  background-image: linear-gradient(to right, #f0afce, #ef294a); }
+  background-image: linear-gradient(to right, #f0afce, #f6667e); }
 
 .title_story {
   font-size: 2rem;
@@ -382,6 +398,9 @@ a:hover {
   color: #151315; }
 
 /* ------------------------------end content------------------ */
+.footer {
+  background-color: #ffffff; }
+
 .end_footer {
   text-align: center;
   border-top: 1px solid #666; }
@@ -389,7 +408,7 @@ a:hover {
 .end_text_footer {
   color: #151315;
   font-size: 10px;
-  margin-top: 5px; }
+  margin: 5px 0 0 0; }
 
 /* next page-news */
 .sli_img {
@@ -418,7 +437,7 @@ a:hover {
     transition:1s ease-in-out;
 } */
 .all_product::-webkit-scrollbar {
-  width: 6px;
+  width: 3px;
   background-color: #151315; }
 
 .all_product::-webkit-scrollbar-thumb {

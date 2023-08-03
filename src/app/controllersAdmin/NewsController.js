@@ -1,11 +1,21 @@
 const NewsModel = require('../../models/newsModel')
 const { mutipleMongooseToObject } = require('../../util/mongoose')
-
+const jwt = require('jsonwebtoken')
 class NewsController {
     showNews(req, res, next) {
         const pageSize = 10;
         var page = req.query.page
         var q = req.query.q;
+        var token = req.cookies.token;
+        var result = null;
+        try {
+          if (token) {
+              result = jwt.verify(token, 'mk');
+             
+          }
+      } catch (err) {
+          console.error('Invalid token:', err.message);
+      }
         if (page) {
             page = parseInt(page)
             if (page <= 1) {
@@ -19,6 +29,7 @@ class NewsController {
                 .then(news => {
                     res.render('admin/show', {
                         showNews:true,
+                         isLogin: result,
                         news: mutipleMongooseToObject(news),
                     })
                 })
@@ -36,6 +47,7 @@ class NewsController {
                 .then(news => {
                     res.render('admin/show', {
                         showNews:true,
+                         isLogin: result,
                         news: mutipleMongooseToObject(news),
                     })
                 })
@@ -48,6 +60,7 @@ class NewsController {
                 .then(news => {
                     res.render('admin/show', {
                         showNews:true,
+                         isLogin: result,
                         news: mutipleMongooseToObject(news),
                     })
                 })

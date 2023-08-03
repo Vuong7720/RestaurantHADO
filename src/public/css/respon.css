@@ -1,0 +1,21 @@
+.menu_account_sm {
+  display: none !important; }
+
+@media (max-width: 992px) {
+  .name_restaurant {
+    display: none; }
+  .menu_account_lg {
+    display: none !important; }
+  .menu_account_sm {
+    display: block !important; }
+  .slide_customer {
+    height: 250px !important; }
+  .ct_1 {
+    display: none !important; } }
+
+.name_restaurant {
+  color: black; }
+
+@media (max-width: 576px) {
+  .name_restaurant {
+    display: none; } }

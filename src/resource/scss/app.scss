@@ -2,6 +2,7 @@
 @import 'pagination';
 @import 'login';
 @import 'cart';
+@import 'respon';
 
 
 
@@ -132,7 +133,7 @@ a:hover{
 
 .slider_01{
     width:1100px;
-    height: 400px;
+    height: 100%;
 }
 .slide_customer{
     height: 400px;
@@ -140,7 +141,7 @@ a:hover{
 
 /* ------------------------------------------end slider */
 .all_content{
-    background-image: linear-gradient(to right,$new-color, $new1-color);
+    background-image: linear-gradient(to right, $b1-color, $b2-color);
 }
 .buy_now{
     background-color: $main-menu !important;
@@ -205,7 +206,7 @@ a:hover{
 }
 /* -----------------------------end main-content */
 .story_content{
-    background-image: linear-gradient(to right,$new-color, $new1-color);
+    background-image: linear-gradient(to right,$b1-color, $b2-color);
 }
 
 
@@ -265,6 +266,9 @@ a:hover{
 
 
 /* ------------------------------end content------------------ */
+.footer{
+    background-color: #ffffff;
+}
 .end_footer{
     text-align: center;
     border-top: 1px solid #666;
@@ -273,7 +277,7 @@ a:hover{
 .end_text_footer{
     color: $text2-color;
     font-size:10px;
-    margin-top: 5px;
+    margin: 5px 0 0 0;
 }
 
 
@@ -317,7 +321,7 @@ a:hover{
     transition:1s ease-in-out;
 } */
 .all_product::-webkit-scrollbar{
-    width:6px;
+    width:3px;
     background-color:$text2-color;
 }
 .all_product::-webkit-scrollbar-thumb{

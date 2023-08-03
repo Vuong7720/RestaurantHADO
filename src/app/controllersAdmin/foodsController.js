@@ -1,81 +1,22 @@
 const FoodsModel = require('../../models/foodsModel')
 const upload = require('../../middleware/uploadImgFoods')
 const { mutipleMongooseToObject } = require('../../util/mongoose')
-
+const jwt = require('jsonwebtoken')
 class FoodsController {
-    // showFoods(req, res, next) {
-    //     const pageSize = 10;
-    //     var page = req.query.page
-    //     var q = req.query.q;
-    //     if (page) {
-    //         page = parseInt(page)
-    //         if (page <= 1) {
-    //             page = 1
-    //         }
-    //         var skip = (page - 1) * pageSize
-
-    //         FoodsModel.find({})
-    //             .skip(skip)
-    //             .limit(pageSize)
-    //             .then(foods => {
-    //                 res.render('admin/show', {
-    //                     showFood: true,
-    //                     pageSize:pageSize,
-    //                     foods: mutipleMongooseToObject(foods),
-    //                     totalCount: totalCount,
-    //                 })
-    //             })
-    //             .catch(err => {
-    //                 res.status(500).json('loi server1')
-    //             })
-    //     }
-    //     else if (q) {
-    //         FoodsModel.find({
-    //             $or: [
-    //                 { nameFood: { $regex: q, $options: 'i' } },
-    //                 { titleFood: { $regex: q, $options: 'i' } },
-    //             ],
-    //         })
-    //             .then(foods => {
-    //                 res.render('admin/show', {
-    //                     showFood: true,
-    //                     pageSize:pageSize,
-    //                     foods: mutipleMongooseToObject(foods),
-    //                     totalCount: totalCount,
-    //                 })
-    //             })
-    //             .catch(err => {
-    //                 res.status(500).json('Lỗi server account')
-    //             });
-    //     } else {
-    //         FoodsModel.find({})
-    //             .countDocuments() 
-    //             .then(totalCount => {
-    //                 console.log(totalCount)
-    //                 FoodsModel.find({})
-    //                     .limit(pageSize)
-    //                     .then(foods => {
-    //                         res.render('admin/show', {
-    //                             showFood: true,
-    //                             pageSize:pageSize,
-    //                             foods: mutipleMongooseToObject(foods),
-    //                             totalCount: totalCount,
-    //                         });
-    //                     })
-    //                     .catch(err => {
-    //                         res.status(500).json('err showFood in server');
-    //                     });
-    //             })
-    //             .catch(err => {
-    //                 res.status(500).json('err fetching data in server');
-    //             });
-    //     }
-    // }
     showFoods(req, res, next) {
         const pageSize = 10;
         var page = req.query.page;
         var q = req.query.q;
-        
+        var token = req.cookies.token;
+        var result = null;
+        try {
+          if (token) {
+              result = jwt.verify(token, 'mk');
+              
+          }
+      } catch (err) {
+          console.error('Invalid token:', err.message);
+      }
         if (page) {
             page = parseInt(page);
             if (page <= 1) {
@@ -92,6 +33,7 @@ class FoodsController {
                         .then(totalCount => {
                             res.render('admin/show', {
                                 showFood: true,
+                                 isLogin: result,
                                 pageSize: pageSize,
                                 foods: mutipleMongooseToObject(foods),
                                 totalCount: totalCount,
@@ -114,6 +56,7 @@ class FoodsController {
                 .then(foods => {
                     res.render('admin/show', {
                         showFood: true,
+                         isLogin: result,
                         pageSize: pageSize,
                         foods: mutipleMongooseToObject(foods),
                     });
@@ -130,6 +73,7 @@ class FoodsController {
                         .then(totalCount => {
                             res.render('admin/show', {
                                 showFood: true,
+                                 isLogin: result,
                                 pageSize: pageSize,
                                 foods: mutipleMongooseToObject(foods),
                                 totalCount: totalCount,

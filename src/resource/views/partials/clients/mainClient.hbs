@@ -29,7 +29,7 @@
             {{#each combined}}
             {{#each this.foods}}
             {{#if (eq this.cate "fast")}}
-           <div class="col-xl-3 mt-2">
+           <div class="col-xl-3 col-lg-3 col-sm-4 mt-2">
               <div class="cd_01 card" style="width:100%">
                 <img class="card-img-top image_food" src="{{this.imageFood}} " alt="{{this.nameFood}}">
                 <div class="cb_01 card-body">
@@ -52,7 +52,7 @@
             {{#each combined}}
             {{#each this.foods}}
             {{#if (eq this.cate "lunch")}}
-           <div class="col-xl-3 mt-2">
+           <div class="col-xl-3 col-lg-3 col-sm-4 mt-2">
               <div class="cd_01 card" style="width:100%">
                 <img class="card-img-top image_food" src="{{this.imageFood}} " alt="{{this.nameFood}}">
                 <div class="cb_01 card-body">
@@ -75,7 +75,7 @@
             {{#each combined}}
             {{#each this.foods}}
             {{#if (eq this.cate "juice")}}
-           <div class="col-xl-3 mt-2">
+           <div class="col-xl-3 col-lg-3 col-sm-4 mt-2">
               <div class="cd_01 card" style="width:100%">
                 <img class="card-img-top image_food" src="{{this.imageFood}} " alt="{{this.nameFood}}">
                 <div class="cb_01 card-body">
@@ -98,7 +98,7 @@
             {{#each combined}}
             {{#each this.foods}}
             {{#if (eq this.cate "snacks")}}
-           <div class="col-xl-3 mt-2">
+           <div class="col-xl-3 col-lg-3 col-sm-4 mt-2">
               <div class="cd_01 card" style="width:100%">
                 <img class="card-img-top image_food" src="{{this.imageFood}} " alt="{{this.nameFood}}">
                 <div class="cb_01 card-body">
@@ -134,12 +134,12 @@
       <span class="title_story">Câu Chuyện</span>
       <div class="title_News ml-2"><i class="fa-solid fa-bahai"></i> {{this.titleNews}}</div>
       <div class="row mt-4">
-        <div class="col-xl-6 align-self-center">
+        <div class="col-xl-6 col-lg-6 col-sm-6 align-self-center">
           <span class="text_story_content">
             {{this.postNews}}
           </span>
         </div>
-        <div class="col-xl-6 align-items-center">
+        <div class="col-xl-6 col-lg-6 col-sm-6 align-items-center">
           <img src="{{this.imageNews}}" alt="{{this.nameNews}}" class="img_story">
           <p class="rotage_r rotage_r_story"></p>
           <p class="tille_news text-center m-auto">{{this.nameNews}}</p>

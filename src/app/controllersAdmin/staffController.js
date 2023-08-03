@@ -1,12 +1,22 @@
 const StaffModel = require('../../models/staffModel')
 const upload = require('../../middleware/uploadImgFoods')
 const { mutipleMongooseToObject } = require('../../util/mongoose')
-
+const jwt = require('jsonwebtoken')
 class StaffController {
     showStaff(req, res, next) {
         const pageSize = 10;
         var page = req.query.page
         var q = req.query.q;
+        var token = req.cookies.token;
+        var result = null;
+        try {
+          if (token) {
+              result = jwt.verify(token, 'mk');
+              
+          }
+      } catch (err) {
+          console.error('Invalid token:', err.message);
+      }
         if (page) {
             page = parseInt(page)
             if (page <= 1) {
@@ -20,6 +30,7 @@ class StaffController {
                 .then(staffs => {
                     res.render('admin/show',{
                         showStaff:true,
+                         isLogin: result,
                         staffs: mutipleMongooseToObject(staffs),
                     })
                 })
@@ -38,6 +49,7 @@ class StaffController {
               .then(staffs => {
                   res.render('admin/show',{
                     showStaff:true,
+                     isLogin: result,
                       staffs: mutipleMongooseToObject(staffs),
                   })
               })
@@ -50,6 +62,7 @@ class StaffController {
             .then(staffs => {
                 res.render('admin/show', {
                     showStaff:true,
+                     isLogin: result,
                     staffs: mutipleMongooseToObject(staffs),
                 })
             })

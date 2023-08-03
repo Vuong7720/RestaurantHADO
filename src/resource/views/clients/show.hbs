@@ -1,9 +1,13 @@
+
 {{#if showLogin}}
 {{> clients/login}}
 
 {{else}}
+    {{#if showFoodCli}}
+        {{> clients/foods}}
+    {{else}}
+    {{> clients/slideClient}}
+    {{> clients/mainClient}}
 
-{{> clients/slideClient}}
-
-{{> clients/mainClient}}
+    {{/if}}
 {{/if}}

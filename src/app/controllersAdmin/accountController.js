@@ -3,71 +3,21 @@ const {mutipleMongooseToObject} = require('../../util/mongoose')
 const jwt = require('jsonwebtoken')
 
 class AccountController {
-    // showAccount(req, res, next) {
-    //     const pageSize = 10;
-    //     var page = req.query.page
-    //     var q = req.query.q;
-    //     if (page) {
-    //         page = parseInt(page)
-    //         if (page <= 1) {
-    //             page = 1
-    //         }
-    //         var skip = (page - 1) * pageSize
-
-    //         AccountModel.find({})
-    //             .skip(skip)
-    //             .limit(pageSize)
-    //             .then(accounts => {
-    //                 AccountModel.countDocuments({}).then((total)=>{
-    //                     var sumPage = Math.ceil(total/pageSize)
-                    
-    //                     res.render('admin/show',{
-    //                         sumPage:sumPage,
-    //                         page:page,
-    //                         showAccount:true,
-    //                         accounts: mutipleMongooseToObject(accounts),
-    //                     })
-    //                 })
-    //             })
-    //             .catch(err => {
-    //                 res.status(500).json('loi server1')
-    //             })
-    //     }
-    //     else if(q){
-    //         AccountModel.find({
-    //             $or: [
-    //               { username: { $regex: q, $options: 'i' } },
-    //               { email: { $regex: q, $options: 'i' } },
-    //             ],
-    //           })
-    //           .then(accounts => {
-    //               res.render('admin/show',{
-    //                 showAccount:true,
-    //                   accounts: mutipleMongooseToObject(accounts),
-    //               })
-    //           })
-    //           .catch(err => {
-    //               res.status(500).json('Lỗi server account')
-    //           });
-    //     }
-    //     else{
-    //         AccountModel.find({})
-    //         .limit(pageSize)
-    //             .then(accounts => {
-    //                 res.render('admin/show',{
-    //                     showAccount:true,
-    //                     accounts: mutipleMongooseToObject(accounts),
-    //                 })
-    //             })
-    //             .catch(err => {
-    //                 res.status(500).json('Lỗi server account')
-    //             });
-    //     }
-    // }
+   
     showAccount(req, res, next) {
         const pageSize = 5;
         var page = req.query.page;
         var q = req.query.q;
+        var token = req.cookies.token;
+        var result = null;
+        try {
+          if (token) {
+              result = jwt.verify(token, 'mk');
+              
+          }
+      } catch (err) {
+          console.error('Invalid token:', err.message);
+      }
         
         if (page) {
             page = parseInt(page);
@@ -84,6 +34,7 @@ class AccountController {
                         .then(totalCount => {
                             res.render('admin/show', {
                                 showAccount:true,
+                                 isLogin: result,
                                 pageSize: pageSize,
                                 accounts: mutipleMongooseToObject(accounts),
                                 totalCount: totalCount,
@@ -106,6 +57,7 @@ class AccountController {
                 .then(accounts => {
                     res.render('admin/show', {
                         showAccount:true,
+                         isLogin: result,
                         pageSize: pageSize,
                         accounts: mutipleMongooseToObject(accounts),
                     });
@@ -122,6 +74,7 @@ class AccountController {
                         .then(totalCount => {
                             res.render('admin/show', {
                                 showAccount:true,
+                                 isLogin: result,
                                 pageSize: pageSize,
                                 accounts: mutipleMongooseToObject(accounts),
                                 totalCount: totalCount,
@@ -215,8 +168,21 @@ class AccountController {
                     message:'thanh cong',
                     token: token
                 })
+                return res.redirect('/dashboard');
             }else{
-                res.json('tai khoan hoac mk sai')
+                AccountModel.findOne({username: username})
+                .then(user =>{
+                    if(user){
+
+                        res.send('<script>alert("Sai mật khẩu"); window.location="/login";</script>')
+                    }else{
+                        res.send('<script>alert("Tài khoản hoặc mật khẩu sai"); window.location="/login";</script>')
+                    }
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.send('<script>alert("Đã xảy ra lỗi"); window.location="/login";</script>');
+                })
             }
         })
             .catch(err =>{console.log(err)})

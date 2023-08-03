@@ -1,0 +1,53 @@
+
+ <div class="sli_roll mb-2 mt-4">
+      <div class="container">
+        <div class="chose_address mx-auto justify-content-center">
+          <span class="order_product">Đồ ăn <i class="fa-solid fa-right-long"></i> Chọn địa chỉ giao hàng <i class="fa-solid fa-caret-down"></i></span>
+        </div>
+      </div>
+    </div>
+    
+<div class="product mb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-2">
+                <div class="popy">
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action">All</a>
+                        <a href="#" class="list-group-item list-group-item-action">Đồ ăn</a>
+                        <a href="#" class="list-group-item list-group-item-action">Đồ uống</a>
+                        <a href="#" class="list-group-item list-group-item-action">Đồ chay</a>
+                        <a href="#" class="list-group-item list-group-item-action">Bánh kem</a>
+                        <a href="#" class="list-group-item list-group-item-action">Tráng miệng</a>
+                        <a href="#" class="list-group-item list-group-item-action">HomeMake</a>
+                        <a href="#" class="list-group-item list-group-item-action">Vỉa hè</a>
+                        <a href="#" class="list-group-item list-group-item-action">Pizza/Burer</a>
+                        <a href="#" class="list-group-item list-group-item-action">Món lẩu</a>
+                        <a href="#" class="list-group-item list-group-item-action">Mì phở</a>
+                        <a href="#" class="list-group-item list-group-item-action">Cơm hộp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-10">
+                <div class="all_product">
+                    <div class="row">
+                        {{#each foods}}
+                        <div class="col-xl-3 col-lg-3 col-sm-4 mt-2">
+                            <div class="cd_01 card" style="width:100%">
+                                <img class="card-img-top image_food" src="{{this.imageFood}} " alt="{{this.nameFood}}">
+                                <div class="cb_01 card-body">
+                                    <h4 class="card-title tx_fo">{{this.nameFood}}</h4>
+                                    <p class="ct_1 card-text">{{this.titleFood}} </p>
+                                    <p class="ct_2 card-text">{{this.price}} VND</p>
+                                    <a href="#" class="btn buy_now stretched-link">Đặt mua ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

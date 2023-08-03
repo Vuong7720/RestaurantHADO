@@ -43,10 +43,14 @@ class DataControllerClient {
         } catch (err) {
             console.error('Invalid token:', err.message);
         }
+        
         CombinedModel.find({})
           .populate('slides')
           .populate('foods')
-          .populate('account')
+          .populate({
+            path: 'account',
+            match: { _id: result ? result._id : null },
+        })
           .populate('news')
           .populate('staffs')
           .exec()

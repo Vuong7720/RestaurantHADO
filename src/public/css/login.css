@@ -1,0 +1,85 @@
+.content {
+  width: 100vw;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(https://a-static.besthdwallpaper.com/autumn-forest-and-yellow-leaves-wallpaper-2560x720-12212_72.jpg); }
+
+.content_app {
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.1); }
+
+.hiden_1 {
+  display: none; }
+
+.content_login {
+  width: 100%;
+  height: 400px; }
+
+.content_register {
+  width: 100%;
+  height: 500px; }
+
+.login_left {
+  width: 100%;
+  height: 100px;
+  margin: 20px 20px 0 0px;
+  text-align: center; }
+
+.title {
+  font-size: 60px;
+  margin-bottom: 30px;
+  color: white; }
+
+.tip {
+  font-size: 40px;
+  color: white; }
+
+.login_right {
+  width: 100%;
+  margin: 0 0px 0 20px;
+  text-align: center; }
+
+.ip {
+  position: relative;
+  margin: 40px 0; }
+
+.ip input {
+  padding-left: 10px; }
+
+.ip label {
+  position: absolute;
+  left: 0;
+  top: -45%;
+  font-size: 20px;
+  font-weight: 600; }
+
+.ip_log {
+  font-size: 20px;
+  border-radius: 5px;
+  height: 50px;
+  width: 95%; }
+
+.submit {
+  background-color: black;
+  color: aliceblue;
+  font-size: 20px;
+  width: 70%;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  cursor: pointer; }
+
+.submit:hover {
+  background-color: #ff9d00; }
+
+.what_sigin {
+  text-decoration: none;
+  color: red;
+  margin: 0 5px; }
+
+.change_btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer; }

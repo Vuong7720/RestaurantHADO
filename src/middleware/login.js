@@ -28,6 +28,21 @@ class login {
           return res.redirect('/login');
         }
       }
+      checkLoggedIn(req, res, next) {
+        var token = req.cookies.token;
+        if (token) {
+          try {
+            var result = jwt.verify(token, 'mk');
+            if (result) {
+              
+              return res.redirect('/');
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        }
+        next();
+      }
     }
     
     module.exports = new login;
