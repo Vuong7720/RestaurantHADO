@@ -58,6 +58,11 @@ app.get('/', function (req, res) {
   res.render('clients/show')
 })
 
+
+app.get('/detai', function (req, res) {
+  res.render('partials/clients/detai')
+})
+
 app.listen(port, () => {
   console.log(`server on http://localhost:${port}`)
 })

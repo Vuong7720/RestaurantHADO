@@ -34,7 +34,6 @@ class login {
           try {
             var result = jwt.verify(token, 'mk');
             if (result) {
-              
               return res.redirect('/');
             }
           } catch (err) {

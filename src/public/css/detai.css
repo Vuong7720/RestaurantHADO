@@ -1,0 +1,17 @@
+.big_img {
+  width: 90%;
+  border-radius: 5px; }
+
+.all_sm_imgPro {
+  display: flex; }
+
+.sm_img {
+  width: 100px;
+  height: 100px; }
+
+.name_product {
+  font-size: 1.6rem;
+  font-weight: bold; }
+
+.title_pro {
+  font-size: 1.2rem; }

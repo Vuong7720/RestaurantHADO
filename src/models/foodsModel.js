@@ -4,6 +4,7 @@ const SoftDeleteModel = require('mongoose-delete');
 const FoodsSchema = new Schema({
     nameFood:{type: String},
     imageFood:{type: String},
+    spImgFood: [{ type: String }],
     description:{type: String},
     titleFood:{type: String},
     price:{type: Number},

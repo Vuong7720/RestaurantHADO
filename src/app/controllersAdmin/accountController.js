@@ -165,10 +165,8 @@ class AccountController {
                 _id:accounts._id,
                }, 'mk')
                 res.json({
-                    message:'thanh cong',
                     token: token
                 })
-                return res.redirect('/dashboard');
             }else{
                 AccountModel.findOne({username: username})
                 .then(user =>{

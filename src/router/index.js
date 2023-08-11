@@ -18,6 +18,7 @@ var trashSlidesRouter = require('./routerTrash/slideRouter');
 var login = require('./routerClient/login')
 var allData = require('./routerClient/appRouter')
 var foodsClient = require('./routerClient/foodsClientRouter')
+var detaiClient = require('./routerClient/detaiRouter')
 
 
 function router(app){
@@ -40,6 +41,7 @@ function router(app){
     app.use('/login', login)
     app.use('/', allData)
     app.use('/foods', foodsClient)
+    app.use('/', detaiClient)
 }
 
 module.exports = router;
