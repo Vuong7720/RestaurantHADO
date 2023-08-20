@@ -15,7 +15,6 @@ const FoodsSchema = new Schema({
 },{
     collection: 'foods',
 })
-// add plugin
 FoodsSchema.plugin(SoftDeleteModel, { 
     deletedAt: true,
     overrideMethods: 'all',

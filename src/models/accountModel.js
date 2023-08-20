@@ -14,7 +14,6 @@ const AccountSchema = new Schema({
 },{
     collection: 'accounts',
 })
-// add plugin
 AccountSchema.plugin(SoftDeleteModel, { 
     deletedAt: true,
     overrideMethods: 'all',

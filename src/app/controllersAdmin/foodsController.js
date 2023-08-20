@@ -169,7 +169,7 @@ class FoodsController {
                 break;
 
             default:
-                res.json({ message: 'action is invalid' })
+                res.redirect('back')
         }
     }
 }

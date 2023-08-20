@@ -13,7 +13,6 @@ const NewsSchema = new Schema({
 },{
     collection: 'news',
 })
-// add plugin
 NewsSchema.plugin(SoftDeleteModel, { 
     deletedAt: true,
     overrideMethods: 'all',

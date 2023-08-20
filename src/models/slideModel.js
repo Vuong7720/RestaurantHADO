@@ -10,7 +10,6 @@ const SlideSchema = new Schema({
 },{
     collection: 'slides',
 })
-// add plugin
 SlideSchema.plugin(SoftDeleteModel, { 
     deletedAt: true,
     overrideMethods: 'all',

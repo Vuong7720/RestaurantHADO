@@ -22,7 +22,6 @@ const StaffSchema = new Schema({
 },{
     collection: 'staffs',
 })
-// add plugin
 StaffSchema.plugin(SoftDeleteModel, { 
     deletedAt: true,
     overrideMethods: 'all',

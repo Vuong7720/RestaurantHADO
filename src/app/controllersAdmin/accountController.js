@@ -164,9 +164,8 @@ class AccountController {
                var token = jwt.sign({
                 _id:accounts._id,
                }, 'mk')
-                res.json({
-                    token: token
-                })
+               res.cookie('token', token, { httpOnly: true, maxAge: 86400000 });
+                res.redirect('/')
             }else{
                 AccountModel.findOne({username: username})
                 .then(user =>{
