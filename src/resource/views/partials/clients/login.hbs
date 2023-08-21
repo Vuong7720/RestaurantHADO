@@ -86,7 +86,9 @@
     </div>
 </div>
 </div>
-
+ {{#if alertMessage}}
+    <script>alert("{{alertMessage}}");</script>
+    {{/if}}
 
 <script>
     var changelog = () => {
