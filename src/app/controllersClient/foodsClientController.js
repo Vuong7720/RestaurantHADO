@@ -65,7 +65,6 @@ class FoodsClientController {
                     res.status(500).json('Lỗi server khi tìm kiếm dữ liệu');
                 });
         } else {
-           
             FoodsModel.find({})
             .limit(pageSize)
                 .then(foods => {

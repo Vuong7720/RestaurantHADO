@@ -126,11 +126,6 @@
 
     </div>
 </div>
-
-{{!-- --------form hidden --}}
-{{!-- <form id="hidden-form" action="/create" method="post" style="display: none;">
-
-</form> --}}
 {{!-- đang làm giỏ hàng --}}
 
 <div class="modal fade" id="Cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,3 +184,26 @@
         </div>
     </div>
 </div>
+
+
+
+{{!-- --------form hidden --}}
+<form id="hidden-form" action="/create" method="post" style="display: none;">
+
+</form>
+
+<script>
+    function submitHiddenForm(event) {
+        event.preventDefault(); // Ngăn chặn sự kiện mặc định của thẻ a
+
+        // Kiểm tra xem form đã được gửi chưa
+        const hiddenForm = document.getElementById('hidden-form');
+        if (!hiddenForm.submitted) {
+            hiddenForm.submitted = true; // Đánh dấu form đã được gửi
+            hiddenForm.submit(); // Gửi form
+
+            // Sau khi gửi form, bạn có thể chuyển hướng trang nếu cần
+            window.location.href = "/"; // Chuyển hướng trang về "/"
+        }
+    }
+</script>
