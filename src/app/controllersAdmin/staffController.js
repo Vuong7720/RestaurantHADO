@@ -5,72 +5,68 @@ const jwt = require('jsonwebtoken')
 class StaffController {
     showStaff(req, res, next) {
         const pageSize = 10;
-        var page = req.query.page
-        var q = req.query.q;
-        var token = req.cookies.token;
-        var result = null;
+        const q = req.query.q;
+        const token = req.cookies.token;
+        let result = null;
+    
         try {
-          if (token) {
-              result = jwt.verify(token, 'mk');
-              
-          }
-      } catch (err) {
-          console.error('Invalid token:', err.message);
-      }
-        if (page) {
-            page = parseInt(page)
-            if (page <= 1) {
-                page = 1
+            if (token) {
+                result = jwt.verify(token, 'mk');
             }
-            var skip = (page - 1) * pageSize
-
-            StaffModel.find({})
-                .skip(skip)
-                .limit(pageSize)
-                .then(staffs => {
-                    res.render('admin/show',{
-                        showStaff:true,
-                         isLogin: result,
-                        staffs: mutipleMongooseToObject(staffs),
-                    })
-                })
-                .catch(err => {
-                    res.status(500).json('loi server1')
-                })
+        } catch (err) {
+            console.error('Invalid token:', err.message);
         }
-        else if(q){
-            StaffModel.find({
+    
+        let page = parseInt(req.query.page);
+        if (isNaN(page) || page <= 0) {
+            page = 1;
+        }
+    
+        const skip = (page - 1) * pageSize;
+    
+        let query = {};
+    
+        if (q) {
+            query = {
                 $or: [
-                  { nameStaff: { $regex: q, $options: 'i' } },
-                  { address: { $regex: q, $options: 'i' } },
-                  { position: { $regex: q, $options: 'i' } },
+                    { nameStaff: { $regex: q, $options: 'i' } },
+                    { address: { $regex: q, $options: 'i' } },
+                    { position: { $regex: q, $options: 'i' } },
                 ],
-              })
-              .then(staffs => {
-                  res.render('admin/show',{
-                    showStaff:true,
-                     isLogin: result,
-                      staffs: mutipleMongooseToObject(staffs),
-                  })
-              })
-              .catch(err => {
-                  res.status(500).json('Lỗi server account')
-              });
+            };
         }
-        else{
-        StaffModel.find({})
+    
+        StaffModel.find(query)
+            .skip(skip)
+            .limit(pageSize)
             .then(staffs => {
-                res.render('admin/show', {
-                    showStaff:true,
-                     isLogin: result,
-                    staffs: mutipleMongooseToObject(staffs),
-                })
+                StaffModel.countDocuments(query)
+                    .then(totalCount => {
+                        const totalPages = Math.ceil(totalCount / pageSize);
+                        const prevPage = page > 1 ? page - 1 : 1;
+                        const nextPage = page < totalPages ? page + 1 : totalPages;
+    
+                        res.render('admin/show', {
+                            showStaff: true,
+                            isLogin: result,
+                            staffs: mutipleMongooseToObject(staffs),
+                            pageSize: pageSize,
+                            totalCount: totalCount,
+                            currentPage: page,
+                            prevPage: prevPage,
+                            nextPage: nextPage,
+                            totalPages: totalPages,
+                        });
+                    })
+                    .catch(err => {
+                        res.status(500).json('Lỗi server khi đếm số lượng bản ghi');
+                    });
             })
             .catch(err => {
-                res.status(500).json('err show staff')
-            })
-        }
+                res.status(500).json('Lỗi server khi lấy dữ liệu trang');
+            });
     }
+    
     addStaff(req, res, next) {
         var { nameStaff, age, address, gender, position, avataStaff, contactInformation, phone, email, salary, calendar, startWorking, endWorking, createdAt
             , updatedAt } = req.body

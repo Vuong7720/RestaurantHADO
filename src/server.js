@@ -30,6 +30,7 @@ const engine = exphbs.create({
   extname: '.hbs',
   helpers: {
    sum:(a,b)=>a+b,
+   sub:(a,b)=>a-b,
    eq:(v1, v2) => v1 === v2,
    arrPage:(v1, v2) => {
     for (let i = 0; i < v1; i++) {

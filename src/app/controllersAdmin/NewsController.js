@@ -3,72 +3,68 @@ const { mutipleMongooseToObject } = require('../../util/mongoose')
 const jwt = require('jsonwebtoken')
 class NewsController {
     showNews(req, res, next) {
-        const pageSize = 10;
-        var page = req.query.page
-        var q = req.query.q;
-        var token = req.cookies.token;
-        var result = null;
+        const pageSize = 5;
+        const q = req.query.q;
+        const token = req.cookies.token;
+        let result = null;
+    
         try {
-          if (token) {
-              result = jwt.verify(token, 'mk');
-             
-          }
-      } catch (err) {
-          console.error('Invalid token:', err.message);
-      }
-        if (page) {
-            page = parseInt(page)
-            if (page <= 1) {
-                page = 1
+            if (token) {
+                result = jwt.verify(token, 'mk');
             }
-            var skip = (page - 1) * pageSize
-
-            NewsModel.find({})
-                .skip(skip)
-                .limit(pageSize)
-                .then(news => {
-                    res.render('admin/show', {
-                        showNews:true,
-                         isLogin: result,
-                        news: mutipleMongooseToObject(news),
-                    })
-                })
-                .catch(err => {
-                    res.status(500).json('loi server1')
-                })
+        } catch (err) {
+            console.error('Invalid token:', err.message);
         }
-        else if (q) {
-            NewsModel.find({
+    
+        let page = parseInt(req.query.page);
+        if (isNaN(page) || page <= 0) {
+            page = 1;
+        }
+    
+        const skip = (page - 1) * pageSize;
+    
+        let query = {};
+    
+        if (q) {
+            query = {
                 $or: [
                     { nameNews: { $regex: q, $options: 'i' } },
                     { titleNews: { $regex: q, $options: 'i' } },
                 ],
+            };
+        }
+    
+        NewsModel.find(query)
+            .skip(skip)
+            .limit(pageSize)
+            .then(news => {
+                NewsModel.countDocuments(query)
+                    .then(totalCount => {
+                        const totalPages = Math.ceil(totalCount / pageSize);
+                        const prevPage = page > 1 ? page - 1 : 1;
+                        const nextPage = page < totalPages ? page + 1 : totalPages;
+    
+                        res.render('admin/show', {
+                            showNews: true,
+                            isLogin: result,
+                            news: mutipleMongooseToObject(news),
+                            pageSize: pageSize,
+                            totalCount: totalCount,
+                            currentPage: page,
+                            prevPage: prevPage,
+                            nextPage: nextPage,
+                            totalPages: totalPages,
+                        });
+                    })
+                    .catch(err => {
+                        res.status(500).json('Lỗi server khi đếm số lượng bản ghi');
+                    });
             })
-                .then(news => {
-                    res.render('admin/show', {
-                        showNews:true,
-                         isLogin: result,
-                        news: mutipleMongooseToObject(news),
-                    })
-                })
-                .catch(err => {
-                    res.status(500).json('Lỗi server account')
-                });
-        }
-        else {
-            NewsModel.find({})
-                .then(news => {
-                    res.render('admin/show', {
-                        showNews:true,
-                         isLogin: result,
-                        news: mutipleMongooseToObject(news),
-                    })
-                })
-                .catch(err => {
-                    res.status(500).json('err showFood in server')
-                })
-        }
+            .catch(err => {
+                res.status(500).json('Lỗi server khi lấy dữ liệu trang');
+            });
     }
+    
 
     shownewsId(req, res, next) {
         var id = req.params.id

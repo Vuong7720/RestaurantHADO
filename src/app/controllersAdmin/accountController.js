@@ -6,89 +6,67 @@ class AccountController {
    
     showAccount(req, res, next) {
         const pageSize = 5;
-        var page = req.query.page;
-        var q = req.query.q;
-        var token = req.cookies.token;
-        var result = null;
-        try {
-          if (token) {
-              result = jwt.verify(token, 'mk');
-              
-          }
-      } catch (err) {
-          console.error('Invalid token:', err.message);
-      }
-        
-        if (page) {
-            page = parseInt(page);
-            if (page <= 1) {
-                page = 1;
-            }
-            var skip = (page - 1) * pageSize;
+        const q = req.query.q;
+        const token = req.cookies.token;
+        let result = null;
     
-            AccountModel.find({})
-                .skip(skip)
-                .limit(pageSize)
-                .then(accounts => {
-                    AccountModel.countDocuments({})
-                        .then(totalCount => {
-                            res.render('admin/show', {
-                                showAccount:true,
-                                 isLogin: result,
-                                pageSize: pageSize,
-                                accounts: mutipleMongooseToObject(accounts),
-                                totalCount: totalCount,
-                            });
-                        })
-                        .catch(err => {
-                            res.status(500).json('Lỗi server khi đếm số lượng bản ghi');
-                        });
-                })
-                .catch(err => {
-                    res.status(500).json('Lỗi server khi lấy dữ liệu trang');
-                });
-        } else if (q) {
-            AccountModel.find({
+        try {
+            if (token) {
+                result = jwt.verify(token, 'mk');
+            }
+        } catch (err) {
+            console.error('Invalid token:', err.message);
+        }
+    
+        let page = parseInt(req.query.page);
+        if (isNaN(page) || page <= 0) {
+            page = 1;
+        }
+    
+        const skip = (page - 1) * pageSize;
+    
+        let query = {};
+    
+        if (q) {
+            query = {
                 $or: [
                     { username: { $regex: q, $options: 'i' } },
                     { email: { $regex: q, $options: 'i' } },
                 ],
-            })
-                .then(accounts => {
-                    res.render('admin/show', {
-                        showAccount:true,
-                         isLogin: result,
-                        pageSize: pageSize,
-                        accounts: mutipleMongooseToObject(accounts),
-                    });
-                })
-                .catch(err => {
-                    res.status(500).json('Lỗi server khi tìm kiếm dữ liệu');
-                });
-        } else {
-           
-            AccountModel.find({})
-            .limit(pageSize)
-                .then(accounts => {
-                    AccountModel.countDocuments({})
-                        .then(totalCount => {
-                            res.render('admin/show', {
-                                showAccount:true,
-                                 isLogin: result,
-                                pageSize: pageSize,
-                                accounts: mutipleMongooseToObject(accounts),
-                                totalCount: totalCount,
-                            });
-                        })
-                        .catch(err => {
-                            res.status(500).json('Lỗi server khi đếm số lượng bản ghi');
-                        });
-                })
-                .catch(err => {
-                    res.status(500).json('Lỗi server khi lấy dữ liệu');
-                });
+            };
         }
+    
+        AccountModel.find(query)
+            .skip(skip)
+            .limit(pageSize)
+            .then(accounts => {
+                AccountModel.countDocuments(query)
+                    .then(totalCount => {
+                        const totalPages = Math.ceil(totalCount / pageSize);
+                        const prevPage = page > 1 ? page - 1 : 1;
+                        const nextPage = page < totalPages ? page + 1 : totalPages;
+    
+                        res.render('admin/show', {
+                            showAccount: true,
+                            isLogin: result,
+                            pageSize: pageSize,
+                            accounts: mutipleMongooseToObject(accounts),
+                            totalCount: totalCount,
+                            currentPage: page,
+                            prevPage: prevPage,
+                            nextPage: nextPage,
+                            totalPages: totalPages,
+                        });
+                    })
+                    .catch(err => {
+                        res.status(500).json('Lỗi server khi đếm số lượng bản ghi');
+                    });
+            })
+            .catch(err => {
+                res.status(500).json('Lỗi server khi lấy dữ liệu trang');
+            });
     }
+    
     
     showAccountId(req, res, next) {
         var id = req.params.id;
@@ -164,7 +142,7 @@ class AccountController {
                var token = jwt.sign({
                 _id:accounts._id,
                }, 'mk')
-               res.cookie('token', token, { httpOnly: true, maxAge: 86400000 });
+                res.cookie('token', token, { httpOnly: true, maxAge: 86400000 });
                 res.redirect('/')
             }else{
                 AccountModel.findOne({username: username})

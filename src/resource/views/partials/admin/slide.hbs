@@ -88,6 +88,21 @@
     </table>
 </form>
 
+<ul class="pagi_cs pagination pagination-sm justify-content-center mt-3">
+    {{#if totalPages}}
+        <li class="page_01 page-item {{#if (eq currentPage 1)}}disabled{{/if}}">
+            <a class="page-link" href="{{baseUrl}}?page={{prevPage}}"><i class="fa-solid fa-angles-left"></i></a>
+        </li>
+        {{#range 1 totalPages}}
+            <li class="page_01 page-item {{#if (eq this currentPage)}}active{{/if}}">
+                <a class="page-link" href="{{baseUrl}}?page={{this}}">{{this}}</a>
+            </li>
+        {{/range}}
+        <li class="page_01 page-item {{#if (eq currentPage totalPages)}}disabled{{/if}}">
+            <a class="page-link" href="{{baseUrl}}?page={{nextPage}}"><i class="fa-solid fa-angles-right"></i></a>
+        </li>
+    {{/if}}
+</ul>
 
 {{#each slides}}
 <div class="modal fade" id="updateSlides{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="SlidesFormLabel"
