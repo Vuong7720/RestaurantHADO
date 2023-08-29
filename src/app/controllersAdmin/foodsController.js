@@ -3,7 +3,6 @@ const upload = require('../../middleware/uploadImgFoods')
 const { mutipleMongooseToObject } = require('../../util/mongoose')
 const jwt = require('jsonwebtoken')
 class FoodsController {
-   
     showFoods(req, res, next) {
         const pageSize = 10;
         const q = req.query.q;

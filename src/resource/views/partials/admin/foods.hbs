@@ -1,7 +1,7 @@
 <div class="search_admin">
     <form action="">
         <input type="search" name="q" id="searchInput" class="ip_search_admin" placeholder="search">
-        <button type="submit" class="btn_search_admin"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button type="submit" id="searchSubmit" class="btn_search_admin"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
 </div>
 
@@ -189,3 +189,11 @@
     </div>
 </div>
 {{/each}}
+
+
+<script>
+    document.getElementById('searchSubmit').addEventListener('click', function(event) {
+    event.preventDefault(); 
+});
+
+</script>

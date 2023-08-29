@@ -72,7 +72,7 @@ class NewsController {
         var id = req.params.id
         NewsModel.deleteOne({ _id: id })
             .then(() => {
-                res.redirect('/admin/news')
+                res.redirect('back')
             })
             .catch(err => { res.status(500).json('err updateFood in server') })
     }

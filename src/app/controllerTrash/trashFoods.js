@@ -73,7 +73,7 @@ class FoodsController {
         var id = req.params.id
         FoodsModel.deleteOne({_id:id})
         .then(() =>{
-            res.redirect('/admin/foods')
+            res.redirect('back')
         })
         .catch(err =>{res.status(500).json('err updateFood in server')})
     }

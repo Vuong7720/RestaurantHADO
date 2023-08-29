@@ -186,24 +186,20 @@
 </div>
 
 
-
 {{!-- --------form hidden --}}
-<form id="hidden-form" action="/create" method="post" style="display: none;">
+{{!-- <form id="hidden-form" action="/create" method="post" style="display: none;"> --}}
 
 </form>
 
-<script>
+{{!-- <script>
     function submitHiddenForm(event) {
-        event.preventDefault(); // Ngăn chặn sự kiện mặc định của thẻ a
-
-        // Kiểm tra xem form đã được gửi chưa
+        event.preventDefault(); 
+        
         const hiddenForm = document.getElementById('hidden-form');
         if (!hiddenForm.submitted) {
-            hiddenForm.submitted = true; // Đánh dấu form đã được gửi
-            hiddenForm.submit(); // Gửi form
-
-            // Sau khi gửi form, bạn có thể chuyển hướng trang nếu cần
-            window.location.href = "/"; // Chuyển hướng trang về "/"
+            hiddenForm.submitted = true; 
+            hiddenForm.submit(); 
+            window.location.href = "/"; 
         }
     }
-</script>
+</script> --}}
